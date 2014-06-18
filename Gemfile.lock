@@ -1,0 +1,33 @@
+PATH
+  remote: ../poker_motion
+  specs:
+    poker_motion (0.0.1)
+      ruby-poker (= 1.0.0)
+
+PATH
+  remote: ../ruby-poker
+  specs:
+    ruby-poker (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bubble-wrap (1.6.0)
+      bubble-wrap-http (= 1.6.0)
+    bubble-wrap-http (1.6.0)
+    motion-bundler (0.2.1)
+      thor
+    rake (10.3.2)
+    ruby_motion_query (0.5.8)
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap
+  motion-bundler
+  poker_motion!
+  rake
+  ruby-poker!
+  ruby_motion_query
