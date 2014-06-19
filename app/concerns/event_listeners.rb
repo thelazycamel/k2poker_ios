@@ -43,10 +43,13 @@ module EventListeners
       if @quick_fire.player(1).status != :discarded
         if @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
           @quick_fire.player(1).discard(:card_1)
+          cards = :card_1
         elsif @quick_fire.game_status == :river
           @quick_fire.player(1).burn
+          cards = [:card_1, :card_2]
         end
         redraw_scene
+        reveal_cards(cards)
       end
     end
   end
@@ -56,10 +59,13 @@ module EventListeners
       if @quick_fire.player(1).status != :discarded
         if @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
           @quick_fire.player(1).discard(:card_2)
+          cards = :card_2
         elsif @quick_fire.game_status == :river
           @quick_fire.player(1).burn
+          cards = [:card_1, :card_2]
         end
         redraw_scene
+        reveal_cards(cards)
       end
     end
   end

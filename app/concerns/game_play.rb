@@ -2,7 +2,7 @@ module GamePlay
 
   def deal
     @quick_fire.deal
-    deal_cards(:card_1, :comp_card_1, :card_2, :comp_card_2)
+    deal_cards(:card_1, :card_2, :comp_card_1, :comp_card_2)
   end
 
   def flop
