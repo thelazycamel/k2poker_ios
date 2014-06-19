@@ -1,6 +1,7 @@
 class GameController < UIViewController
 
   include BubbleWrap::KVO
+  include GameHelper
   include EventListeners
   include GamePlay
 
@@ -31,17 +32,17 @@ class GameController < UIViewController
     rmq.append(UILabel, :action_text)
     rmq.append(UIButton, :info)
     rmq.append(UIButton, :settings)
-
-    rmq.append(UIButton, :comp_card_one)
-    rmq.append(UIButton, :comp_card_two)
-    rmq.append(UIButton, :table_card_one)
-    rmq.append(UIButton, :table_card_two)
-    rmq.append(UIButton, :table_card_three)
-    rmq.append(UIButton, :table_card_four)
-    rmq.append(UIButton, :table_card_five)
-
     rmq.append(UIButton, :fold)
     rmq.append(UIButton, :play)
+
+    rmq.append(UIButton, :comp_card_1)
+    rmq.append(UIButton, :comp_card_2)
+    rmq.append(UIButton, :table_card_1)
+    rmq.append(UIButton, :table_card_2)
+    rmq.append(UIButton, :table_card_3)
+    rmq.append(UIButton, :table_card_4)
+    rmq.append(UIButton, :table_card_5)
+
     rmq.append(UIButton, :card_1)
     rmq.append(UIButton, :card_2)
     rmq(:score).attr(text: formatted_score)
@@ -61,20 +62,21 @@ class GameController < UIViewController
   def redraw_scene
     rmq(:card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_1}_big") }
     rmq(:card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_2}_big") }
-    rmq(:table_card_one).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[0]}_small") }
-    rmq(:table_card_two).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[1]}_small") }
-    rmq(:table_card_three).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[2]}_small") }
-    rmq(:table_card_four).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[3]}_small") }
-    rmq(:table_card_five).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[4]}_small") }
+    rmq(:table_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[0]}_small") }
+    rmq(:table_card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[1]}_small") }
+    rmq(:table_card_3).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[2]}_small") }
+    rmq(:table_card_4).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[3]}_small") }
+    rmq(:table_card_5).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[4]}_small") }
     rmq(:action_text).style do |st|
       st.view.text = [rank_text,discard_text].compact.join(" - ")
     end
     if @quick_fire.game_status == :finished
-      rmq(:comp_card_one).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_1}_small") }
-      rmq(:comp_card_two).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_2}_small") }
+      rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_1}_small") }
+      rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_2}_small") }
+      reveal_cards(:comp_card_1, :comp_card_2)
     else
-      rmq(:comp_card_one).style {|st| st.background_image = rmq.image.resource("card_back") }
-      rmq(:comp_card_two).style {|st| st.background_image = rmq.image.resource("card_back") }
+      rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("card_back") }
+      rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("card_back") }
     end
     save_game
   end

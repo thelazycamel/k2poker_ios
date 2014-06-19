@@ -46,7 +46,7 @@ class GameStylesheet < ApplicationStylesheet
     st.view.text = "Rebuys 0"
   end
 
-  def comp_card_one(st)
+  def comp_card_1(st)
     st.width = 57
     st.height = 75
     st.top = 90
@@ -54,7 +54,7 @@ class GameStylesheet < ApplicationStylesheet
     st.background_image = rmq.image.resource("card_back")
   end
 
-  def comp_card_two(st)
+  def comp_card_2(st)
     st.width = 57
     st.height = 75
     st.top = 90
@@ -62,44 +62,39 @@ class GameStylesheet < ApplicationStylesheet
     st.background_image = rmq.image.resource("card_back")
   end
 
-  def table_card_one(st)
+  def table_card_1(st)
     st.width = 57
     st.height = 75
     st.top = 175
     st.left = 10
-    st.background_image = rmq.image.resource("dotted")
   end
 
-  def table_card_two(st)
+  def table_card_2(st)
     st.width = 57
     st.height = 75
     st.top = 175
     st.left = 70
-    st.background_image = rmq.image.resource("dotted")
   end
 
-  def table_card_three(st)
+  def table_card_3(st)
     st.width = 57
     st.height = 75
     st.top = 175
     st.left = 131
-    st.background_image = rmq.image.resource("dotted")
   end
 
-  def table_card_four(st)
+  def table_card_4(st)
     st.width = 57
     st.height = 75
     st.top = 175
     st.left = 191
-    st.background_image = rmq.image.resource("dotted")
   end
 
-  def table_card_five(st)
+  def table_card_5(st)
     st.width = 57
     st.height = 75
     st.top = 175
     st.left = 251
-    st.background_image = rmq.image.resource("dotted")
   end
 
   def fold(st)

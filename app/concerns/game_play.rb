@@ -1,5 +1,25 @@
 module GamePlay
 
+  def deal
+    @quick_fire.deal
+    deal_cards(:card_1, :comp_card_1, :card_2, :comp_card_2)
+  end
+
+  def flop
+    @quick_fire.flop
+    reveal_cards(:table_card_1, :table_card_2, :table_card_3)
+  end
+
+  def turn
+    @quick_fire.turn
+    reveal_cards(:table_card_4)
+  end
+
+  def river
+    @quick_fire.river
+    reveal_cards(:table_card_5)
+  end
+
   def finished
     @quick_fire.finished
     winner = @quick_fire.to_hash[:winner]
@@ -22,7 +42,7 @@ module GamePlay
   def next_hand
     if @quick_fire.game_status == :finished && @game.open
       @quick_fire = PokerMotion::QuickFire.new
-      @quick_fire.deal
+      deal
     else
       start_new_game
     end
@@ -31,10 +51,10 @@ module GamePlay
   def start_new_game
     @quick_fire = PokerMotion::QuickFire.new
     rmq(:play).style {|st| st.text = "Play" }
-    @quick_fire.deal
     @game.score = 1
     @game.rebuys = 0
     @game.open = true
+    deal
   end
 
   def add_rebuy

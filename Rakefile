@@ -5,6 +5,7 @@ require 'bundler'
 require 'ruby-poker'
 require 'poker_motion'
 require 'bubble-wrap'
+
 Bundler.require
 
 Motion::Project::App.setup do |app|

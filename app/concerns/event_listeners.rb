@@ -11,13 +11,13 @@ module EventListeners
     rmq(:play).on(:touch) do |sender|
       case @quick_fire.game_status
       when :start
-        @quick_fire.deal
+        deal
       when :deal
-        @quick_fire.flop
+        flop
       when :flop
-        @quick_fire.turn
+        turn
       when :turn
-        @quick_fire.river
+        river
       when :river
         finished
       when :finished
