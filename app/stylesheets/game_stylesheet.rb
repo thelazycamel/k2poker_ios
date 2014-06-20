@@ -66,14 +66,14 @@ class GameStylesheet < ApplicationStylesheet
     st.width = 57
     st.height = 75
     st.top = 175
-    st.left = 10
+    st.left = 13
   end
 
   def table_card_2(st)
     st.width = 57
     st.height = 75
     st.top = 175
-    st.left = 70
+    st.left = 72
   end
 
   def table_card_3(st)
@@ -87,14 +87,14 @@ class GameStylesheet < ApplicationStylesheet
     st.width = 57
     st.height = 75
     st.top = 175
-    st.left = 191
+    st.left = 190
   end
 
   def table_card_5(st)
     st.width = 57
     st.height = 75
     st.top = 175
-    st.left = 251
+    st.left = 249
   end
 
   def fold(st)
@@ -142,6 +142,16 @@ class GameStylesheet < ApplicationStylesheet
     st.color = color.from_hex("0565b0")
     st.font = rmq.font.small
     st.text_alignment = :center
+  end
+
+  def overlay(st)
+    st.top = 30
+    st.left = 10
+    st.height = 487
+    st.width = 300
+    #st.background_color = color.from_hex("003551")
+    st.background_color = color.from_rgba(0,53,81,0.7)
+    st.layer.cornerRadius = 10
   end
 
 end

@@ -1,86 +1,82 @@
 module GameHelper
 
-  def deal_cards
+  def discard_cards(cards)
+    cards.each do |card|
+      start_pos = rmq(card).get.frame.origin.y
+      start_height = rmq(card).get.frame.size.height
+      opts = {
+        duration: 0.2,
+        animations: ->(c) {
+          c.style do |st|
+            st.top = start_pos - start_height
+            st.rotation = 180
+            st.opacity = 0.2
+          end
+        },
+        completion: ->(did_finish, q){
+          if did_finish
+            rmq(:card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_1}_big") }
+            rmq(:card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_2}_big") }
+            rmq(card).animate({
+              duration: 0.2,
+              animations: ->(c) {
+                c.style do |st|
+                  st.opacity = 1.0
+                  st.rotation = 0
+                  st.top = start_pos
+                end
+              },
+              completion: ->(finished, x) {
+                if finished
+                  redraw_scene
+                end
+              }
+            })
+          end
+        }
+      }
+      rmq(card).animate(opts)
+    end
+  end
+
+  def deal_cards(*cards)
     cards.each do |card|
       hide_card(card)
     end
-    deal_card_1
+    rmq(:play).off
+    deal_card(0, cards)
+  end
+
+  def deal_card(index, cards)
+    card = cards[index]
+    if card.nil?
+      play_button
+      return
+    end
+    final_pos = rmq(card).get.frame.origin.y
+    rmq(card).style {|st| st.top = -100; st.rotation = 45 }
+    rmq(card).animate({
+      duration: 0.2,
+      animations: ->(c) {
+        c.style do |st|
+          st.opacity = 1.0
+          st.rotation = 0
+          st.top = final_pos
+        end
+      },
+      completion: ->(did_finish, q){
+        if did_finish
+         deal_card(index + 1, cards)
+        end
+      }
+    })
   end
 
   def hide_card(card)
     rmq(card).hide.style do |st|
-      st.opacity = 0.1
+      st.opacity = 0.0
       st.hidden = false
-      st.top = -200
-      st.rotation = 45
     end
-  end
-
-  def deal_card_1
-    rmq(:card_1).animate({
-      duration: 0.2,
-      animations: ->(c) {
-        c.style do |st|
-          st.opacity = 1.0
-          st.rotation = 0
-          st.top = 320
-        end
-      },
-      completion: ->(did_finish, q){
-        if did_finish
-          deal_card_2
-        end
-      }
-    })
-  end
-
-  def deal_card_2
-    rmq(:comp_card_1).animate({
-      duration: 0.1,
-      animations: ->(c) {
-        c.style do |st|
-          st.opacity = 1.0
-          st.rotation = 0
-          st.top = 90
-        end
-      },
-      completion: ->(did_finish, q){
-        if did_finish
-          deal_card_3
-        end
-      }
-    })
-  end
-
-  def deal_card_3
-    rmq(:card_2).animate({
-      duration: 0.2,
-      animations: ->(c) {
-        c.style do |st|
-          st.opacity = 1.0
-          st.rotation = 0
-          st.top = 320
-        end
-      },
-      completion: ->(did_finish, q){
-        if did_finish
-          deal_card_4
-        end
-      }
-    })
-  end
-
-  def deal_card_4
-    rmq(:comp_card_2).animate({
-      duration: 0.1,
-      animations: ->(c) {
-        c.style do |st|
-          st.opacity = 1.0
-          st.rotation = 0
-          st.top = 90
-        end
-      }
-    })
   end
 
   def drop_cards(*cards)

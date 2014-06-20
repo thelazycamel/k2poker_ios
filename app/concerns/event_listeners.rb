@@ -39,33 +39,33 @@ module EventListeners
   end
 
   def card_1
-    rmq(:card_1).on(:touch) do |sender|
+    rmq(:card_1).on(:swipe_up) do |sender|
       if @quick_fire.player(1).status != :discarded
         if @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
+          cards = [:card_1]
           @quick_fire.player(1).discard(:card_1)
-          cards = :card_1
+          discard_cards(cards)
         elsif @quick_fire.game_status == :river
-          @quick_fire.player(1).burn
           cards = [:card_1, :card_2]
+          @quick_fire.player(1).burn
+          discard_cards(cards)
         end
-        redraw_scene
-        reveal_cards(cards)
       end
     end
   end
 
   def card_2
-    rmq(:card_2).on(:touch) do |sender|
+    rmq(:card_2).on(:swipe_up) do |sender|
       if @quick_fire.player(1).status != :discarded
         if @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
+          cards = [:card_2]
           @quick_fire.player(1).discard(:card_2)
-          cards = :card_2
+          discard_cards(cards)
         elsif @quick_fire.game_status == :river
-          @quick_fire.player(1).burn
           cards = [:card_1, :card_2]
+          @quick_fire.player(1).burn
+          discard_cards(cards)
         end
-        redraw_scene
-        reveal_cards(cards)
       end
     end
   end

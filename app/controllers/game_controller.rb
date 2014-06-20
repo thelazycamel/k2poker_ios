@@ -46,6 +46,7 @@ class GameController < UIViewController
     rmq.append(UIButton, :card_1)
     rmq.append(UIButton, :card_2)
     rmq(:score).attr(text: formatted_score)
+
   end
 
   def set_up_observations
@@ -79,6 +80,12 @@ class GameController < UIViewController
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("card_back") }
     end
     save_game
+  end
+
+  def show_overlay
+    rmq.wrap(rmq.app.window).tap do |ol|
+      ol.append(UIView, :overlay).animations.fade_in
+    end
   end
 
   def rank_text

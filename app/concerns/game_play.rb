@@ -2,22 +2,22 @@ module GamePlay
 
   def deal
     @quick_fire.deal
-    deal_cards(:card_1, :card_2, :comp_card_1, :comp_card_2)
+    deal_cards(:card_1, :comp_card_1, :card_2, :comp_card_2)
   end
 
   def flop
     @quick_fire.flop
-    reveal_cards(:table_card_1, :table_card_2, :table_card_3)
+    deal_cards(:table_card_1, :table_card_2, :table_card_3)
   end
 
   def turn
     @quick_fire.turn
-    reveal_cards(:table_card_4)
+    deal_cards(:table_card_4)
   end
 
   def river
     @quick_fire.river
-    reveal_cards(:table_card_5)
+    deal_cards(:table_card_5)
   end
 
   def finished
