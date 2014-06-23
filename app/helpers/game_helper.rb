@@ -1,5 +1,30 @@
 module GameHelper
 
+  def rank_text
+    if @quick_fire.game_status == :finished && @quick_fire.to_hash[:winner][:id] == 2
+      return "#{@quick_fire.player(2).rank} beats #{@quick_fire.player(1).rank}"
+    else
+      return @quick_fire.player(1).rank
+    end
+  end
+
+  def discard_text
+    return nil if @quick_fire.player(1).status == :discarded
+    if @quick_fire.game_status == :river
+      "Burn?"
+    elsif @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
+      return "Discard One?"
+    elsif @quick_fire.game_status == :finished
+      return "You Win" if @quick_fire.to_hash[:winner][:id] == 1
+      return "You Lose" if @quick_fire.to_hash[:winner][:id] == 2
+      return "Draw" if @quick_fire.to_hash[:winner][:draw] == true
+    end
+  end
+
+  def formatted_score(score)
+    rmq.format.number(score, "$###,###,###,###,###,##0")
+  end
+
   def discard_cards(cards)
     cards.each do |card|
       start_pos = rmq(card).get.frame.origin.y
@@ -9,8 +34,9 @@ module GameHelper
         animations: ->(c) {
           c.style do |st|
             st.top = start_pos - start_height
-            st.rotation = 180
-            st.opacity = 0.2
+            st.rotation = 175 if card == :card_1
+            st.rotation = 185 if card == :card_2
+            st.opacity = 0.5
           end
         },
         completion: ->(did_finish, q){

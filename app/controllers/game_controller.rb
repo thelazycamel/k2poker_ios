@@ -4,6 +4,7 @@ class GameController < UIViewController
   include GameHelper
   include EventListeners
   include GamePlay
+  include Overlay
 
   attr_accessor :game, :quick_fire
 
@@ -45,18 +46,14 @@ class GameController < UIViewController
 
     rmq.append(UIButton, :card_1)
     rmq.append(UIButton, :card_2)
-    rmq(:score).attr(text: formatted_score)
+    rmq(:score).attr(text: formatted_score(@game.score))
 
   end
 
   def set_up_observations
     observe(@game, "score") do |old_value, new_value|
-      rmq(:score).attr(text: formatted_score)
+      rmq(:score).attr(text: formatted_score(new_value))
       rmq(:score).animations.throb
-    end
-    observe(@game, "rebuys") do |old_value, new_value|
-      rmq(:rebuys).style {|st| st.view.text = "Rebuys #{@game.rebuys}"}
-      rmq(:rebuys).animations.throb
     end
   end
 
@@ -68,6 +65,7 @@ class GameController < UIViewController
     rmq(:table_card_3).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[2]}_small") }
     rmq(:table_card_4).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[3]}_small") }
     rmq(:table_card_5).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[4]}_small") }
+    rmq(:rebuys).style {|st| st.text = "Rebuys #{@game.rebuys.size}" }
     rmq(:action_text).style do |st|
       st.view.text = [rank_text,discard_text].compact.join(" - ")
     end
@@ -80,37 +78,6 @@ class GameController < UIViewController
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("card_back") }
     end
     save_game
-  end
-
-  def show_overlay
-    rmq.wrap(rmq.app.window).tap do |ol|
-      ol.append(UIView, :overlay).animations.fade_in
-    end
-  end
-
-  def rank_text
-    if @quick_fire.game_status == :finished && @quick_fire.to_hash[:winner][:id] == 2
-      return "#{@quick_fire.player(2).rank} beats #{@quick_fire.player(1).rank}"
-    else
-      return @quick_fire.player(1).rank
-    end
-  end
-
-  def discard_text
-    return nil if @quick_fire.player(1).status == :discarded
-    if @quick_fire.game_status == :river
-      "Burn?"
-    elsif @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
-      return "Discard One?"
-    elsif @quick_fire.game_status == :finished
-      return "You Win" if @quick_fire.to_hash[:winner][:id] == 1
-      return "You Lose" if @quick_fire.to_hash[:winner][:id] == 2
-      return "Draw" if @quick_fire.to_hash[:draw] == true
-    end
-  end
-
-  def formatted_score
-    rmq.format.number(@game.score, "$###,###,###,###,###,##0")
   end
 
   #these two methods are needed to save and load games from NSUserDefaults
