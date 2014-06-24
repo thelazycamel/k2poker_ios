@@ -70,6 +70,7 @@ module GameHelper
       hide_card(card)
     end
     rmq(:play).off
+    rmq(:fold).off
     deal_card(0, cards)
   end
 
@@ -77,6 +78,7 @@ module GameHelper
     card = cards[index]
     if card.nil?
       play_button
+      fold_button
       return
     end
     final_pos = rmq(card).get.frame.origin.y

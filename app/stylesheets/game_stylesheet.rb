@@ -158,6 +158,18 @@ class GameStylesheet < ApplicationStylesheet
     st.layer.cornerRadius = 10
   end
 
+  def overlay_close(st)
+    st.top = 41
+    st.left = rmq.device.width - 46
+    st.height = 26
+    st.width = 26
+    st.background_color = color.from_hex("fd1b14")
+    st.color = color.white
+    st.text = "X"
+    st.layer.cornerRadius = 13
+    st.font = rmq.font.small
+  end
+
   def win_text(st)
     st.font = rmq.font.super
     st.text_alignment = :center
@@ -210,6 +222,18 @@ class GameStylesheet < ApplicationStylesheet
 
   def win_button(st)
     play st
+  end
+
+  def high_score(st)
+    st.font = rmq.font.medium
+    st.text_alignment = :center
+    st.top = 340
+    st.left = 60
+    st.width = 200
+    st.height = 100
+    st.color = color.from_hex("f8fd2d")
+    st.view.lineBreakMode = NSLineBreakByWordWrapping
+    st.view.numberOfLines = 2
   end
 
   def share_button(st)

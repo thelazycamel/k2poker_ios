@@ -3,6 +3,7 @@ module Overlay
   def show_overlay
     rmq.wrap(rmq.app.window).tap do |ol|
       ol.append(UIView, :overlay).animations.fade_in(duration: 1)
+      ol.append(UIButton, :overlay_close).animations.fade_in(duration: 1)
       ol.append(UILabel, :win_text).animations.fade_in(duration: 1)
       ol.append(UILabel, :win_total).animations.fade_in(duration: 1)
       ol.append(UILabel, :win_type).animations.fade_in(duration: 1)
@@ -13,11 +14,18 @@ module Overlay
       ol.append(UIButton, :win_card_5).animations.fade_in(duration: 1)
       ol.append(UIButton, :win_button).animations.fade_in(duration: 1)
 
+      overlay_elements = [:win_button, :overlay, :overlay_close, :win_text, :win_total, :win_type, :win_card_1, :win_card_2, :win_card_3, :win_card_4, :win_card_5, :share_button, :rate_button, :high_score]
+
       ol.find(:win_button).on(:touch) do |sender|
-        ol.find(sender, :overlay, :win_text, :win_total, :win_type, :win_card_1, :win_card_2, :win_card_3, :win_card_4, :win_card_5, :share_button, :rate_button).hide.remove
+        ol.find(overlay_elements).hide.remove
         next_hand
         redraw_scene
       end
+
+      ol.find(:overlay_close).on(:touch) do |sender|
+        ol.find(overlay_elements).hide.remove
+      end
+
     end
 
     winner = @quick_fire.to_hash[:winner]
@@ -41,11 +49,16 @@ module Overlay
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @game.score == @game.high_score ? "New High Score" : "Beaten By" }
     display_overlay_winning_cards
     display_win_button("Play Again?")
-    display_share_buttons if @game.score == @game.high_score
+    if @game.score == @game.high_score
+      display_share_buttons
+    else
+      rmq(rmq.app.window).append(UILabel, :high_score).animations.fade_in(duration: 1).style {|st| st.text = "Highest Score #{formatted_score(@game.high_score)}" }
+    end
   end
 
   def overlay_draw
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "DRAW"; st.color = rmq.color.from_hex("f8fd2d")}
+    rmq(rmq.app.window).append(UILabel, :high_score).animations.fade_in(duration: 1).style {|st| st.text = "Highest Score #{formatted_score(@game.high_score)}" }
   end
 
   def overlay_rebuy

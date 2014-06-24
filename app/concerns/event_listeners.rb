@@ -30,32 +30,35 @@ module EventListeners
 
   def fold_button
     rmq(:fold).on(:touch) do |sender|
-      return false if @quick_fire.game_status == :finished
-      if @game.score > 1
-        @game.score = @game.score / 2
-      end
-      rmq.append(UILabel, :folding)
-      opts = {
-        duration: 0.6,
-        animations: ->(ct){
-          ct.style do |st|
-            st.scale = 4
-            st.opacity = 0.0
-          end
-        },
-        completion: ->(did_finish, q){
-          if did_finish
-            @quick_fire = PokerMotion::QuickFire.new
-            redraw_scene
-            rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).reapply_styles
-            q.hide.remove
-            deal
-          end
+      rmq(:fold).off
+      unless  @quick_fire.game_status == :finished
+        if @game.score > 1
+          @game.score = @game.score / 2
+        end
+        rmq.append(UILabel, :folding)
+        opts = {
+          duration: 0.6,
+          animations: ->(ct){
+            ct.style do |st|
+              st.scale = 4
+              st.opacity = 0.0
+            end
+          },
+          completion: ->(did_finish, q){
+            if did_finish
+              @quick_fire = PokerMotion::QuickFire.new
+              redraw_scene
+              rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).reapply_styles
+              q.hide.remove
+              fold_button
+              deal
+            end
+          }
         }
-      }
-      #TODO alter this to do a chain of events passing one card after the other perhaps just drop and fade, on the last one clean up 
-      rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).animations.drop_and_spin
-      rmq(:folding).animate(opts)
+        #TODO alter this to do a chain of events passing one card after the other perhaps just drop and fade, on the last one clean up 
+        rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).animations.drop_and_spin
+        rmq(:folding).animate(opts)
+      end
     end
   end
 
