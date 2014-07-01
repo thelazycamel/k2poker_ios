@@ -12,13 +12,16 @@ module EventListeners
 
   def info_button
     rmq(:info).on(:touch) do |sender|
-      controller = InfoController.alloc.initWithNibName(nil, bundle: nil)
-
+      controller = InfoOneController.alloc.initWithNibName(nil, bundle:nil)
+      self.navigationController.pushViewController(controller, animated: true)
     end
   end
 
   def settings_button
-
+    rmq(:settings).on(:touch) do |sender|
+      controller = SettingsController.alloc.initWithNibName(nil, bundle:nil)
+      self.navigationController.pushViewController(controller, animated: true)
+    end
   end
 
   def table_cards_button

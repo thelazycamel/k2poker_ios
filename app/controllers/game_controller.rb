@@ -24,6 +24,13 @@ class GameController < UIViewController
     set_up_views
     redraw_scene
     set_up_events
+    true
+  end
+
+  def viewWillAppear(animated)
+    super
+    self.navigationController.setNavigationBarHidden(true)
+    animated
   end
 
   def set_up_views

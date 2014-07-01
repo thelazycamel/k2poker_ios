@@ -5,8 +5,9 @@ class AppDelegate
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @game = Game.load
     @game ||= Game.new(score: 1, open: true, rebuys: [], high_score: 1)
-    @game_controller = GameController.alloc.initWithGame(@game)
-    @window.rootViewController = @game_controller
+    @controller = GameController.alloc.initWithGame(@game)
+    @nav_controller = UINavigationController.alloc.initWithRootViewController(@controller)
+    @window.rootViewController = @nav_controller
     @window.makeKeyAndVisible
     true
   end
