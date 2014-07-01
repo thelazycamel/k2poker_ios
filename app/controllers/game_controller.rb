@@ -10,9 +10,13 @@ class GameController < UIViewController
 
   def initWithGame(game)
     initWithNibName(nil, bundle:nil)
+    load_game(game)
+    self
+  end
+
+  def load_game(game)
     @game = game
     @quick_fire = PokerMotion::QuickFire.new(quick_fire_game_hash)
-    self
   end
 
   def viewDidLoad
@@ -29,7 +33,15 @@ class GameController < UIViewController
 
   def viewWillAppear(animated)
     super
+    @game ||= Game.load
+    load_game(@game)
     self.navigationController.setNavigationBarHidden(true)
+    animated
+  end
+
+  def viewWillDisappear(animated)
+    super
+    save_game
     animated
   end
 

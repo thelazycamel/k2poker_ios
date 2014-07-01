@@ -12,8 +12,15 @@ module EventListeners
 
   def info_button
     rmq(:info).on(:touch) do |sender|
-      controller = InfoOneController.alloc.initWithNibName(nil, bundle:nil)
-      self.navigationController.pushViewController(controller, animated: true)
+      #controller = InfoOneController.alloc.initWithNibName(nil, bundle:nil)
+      tabbar = UITabBarController.alloc.init
+      tabbar.viewControllers = [
+        InfoOneController.alloc.initWithNibName(nil, bundle:nil),
+        InfoTwoController.alloc.initWithNibName(nil, bundle:nil),
+        InfoThreeController.alloc.initWithNibName(nil, bundle:nil)
+      ]
+      tabbar.selectedIndex = 0
+      self.navigationController.pushViewController(tabbar, animated: true)
     end
   end
 
