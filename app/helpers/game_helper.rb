@@ -8,19 +8,6 @@ module GameHelper
     end
   end
 
-  def discard_text
-    return nil if @quick_fire.player(1).status == :discarded
-    if @quick_fire.game_status == :river
-      "Burn?"
-    elsif @quick_fire.game_status == :deal || @quick_fire.game_status == :flop || @quick_fire.game_status == :turn
-      return "Discard One?"
-    elsif @quick_fire.game_status == :finished
-      return "You Win" if @quick_fire.to_hash[:winner][:id] == 1
-      return "You Lose" if @quick_fire.to_hash[:winner][:id] == 2
-      return "Draw" if @quick_fire.to_hash[:winner][:draw] == true
-    end
-  end
-
   def formatted_score(score)
     rmq.format.number(score, "$###,###,###,###,###,##0")
   end
@@ -79,6 +66,7 @@ module GameHelper
     if card.nil?
       play_button
       fold_button
+      redraw_scene
       return
     end
     final_pos = rmq(card).get.frame.origin.y

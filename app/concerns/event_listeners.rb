@@ -1,10 +1,35 @@
 module EventListeners
 
   def set_up_events
+    info_button
+    settings_button
     play_button
     fold_button
     card_1
     card_2
+    table_cards_button
+  end
+
+  def info_button
+    rmq(:info).on(:touch) do |sender|
+      controller = InfoController.alloc.initWithNibName(nil, bundle: nil)
+
+    end
+  end
+
+  def settings_button
+
+  end
+
+  def table_cards_button
+    [:table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5].each do |card|
+     rmq(card).on(:touch) do |sender|
+       unless @quick_fire.game_status == :deal || @quick_fire.game_status == :start
+         rmq(:action_text).animations.throb
+         rmq(:ranked).animations.throb
+       end
+     end
+    end
   end
 
   def play_button
@@ -47,8 +72,8 @@ module EventListeners
           completion: ->(did_finish, q){
             if did_finish
               @quick_fire = PokerMotion::QuickFire.new
-              redraw_scene
               rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).reapply_styles
+              redraw_scene
               q.hide.remove
               fold_button
               deal

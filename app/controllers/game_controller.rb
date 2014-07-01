@@ -24,7 +24,6 @@ class GameController < UIViewController
     set_up_views
     redraw_scene
     set_up_events
-    set_up_observations
   end
 
   def set_up_views
@@ -46,29 +45,20 @@ class GameController < UIViewController
 
     rmq.append(UIButton, :card_1)
     rmq.append(UIButton, :card_2)
+
+    rmq.append(UILabel, :burn_icon_1).tag(:burn_icon)
+    rmq.append(UILabel, :burn_icon_2).tag(:burn_icon)
+
     rmq(:score).attr(text: formatted_score(@game.score))
 
   end
 
-  def set_up_observations
-    observe(@game, "score") do |old_value, new_value|
-      rmq(:score).attr(text: formatted_score(new_value))
-      rmq(:score).animations.throb
-    end
-  end
-
   def redraw_scene
-    rmq(:card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_1}_big") }
-    rmq(:card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_2}_big") }
-    rmq(:table_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[0]}_small") }
-    rmq(:table_card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[1]}_small") }
-    rmq(:table_card_3).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[2]}_small") }
-    rmq(:table_card_4).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[3]}_small") }
-    rmq(:table_card_5).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.table_cards[4]}_small") }
+    set_up_cards
+    show_burn_options
+    rmq(:score).style {|st| st.text = formatted_score(@game.score) }
     rmq(:rebuys).style {|st| st.text = "Rebuys #{@game.rebuys.size}" }
-    rmq(:action_text).style do |st|
-      st.view.text = [rank_text,discard_text].compact.join(" - ")
-    end
+    rmq(:action_text).style { |st| st.view.text = rank_text }
     if @quick_fire.game_status == :finished
       rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_1}_small") }
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_2}_small") }
@@ -78,6 +68,37 @@ class GameController < UIViewController
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("card_back") }
     end
     save_game
+  end
+
+  def set_up_cards
+    set_up_card(1, true)
+    set_up_card(2, true)
+    5.times do |card|
+      set_up_card(card, false)
+    end
+  end
+
+  def set_up_card(card_number, player)
+    card = player ? "card_#{card_number}".to_sym : "table_card_#{card_number + 1}".to_sym
+    card_image = player ? "#{@quick_fire.player(1).send(card)}_big" : "#{@quick_fire.table_cards[card_number]}_small"
+    card_value = card_image.split("_").first
+    rmq(card).clear_tags
+    if card_value
+      rmq(card).tag(:ranked) if @quick_fire.player(1).ranked_cards.include?(card_value)
+      rmq(card).style {|st| st.background_image = rmq.image.resource(card_image) }
+    else
+      rmq(card).style {|st| st.background_image = rmq.image.resource("") }
+    end
+  end
+
+  def show_burn_options
+    if @quick_fire.player(1).status == :discarded
+      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("no_entry") }
+    elsif @quick_fire.game_status == :river
+      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("discard") }
+    else
+      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("empty") }
+    end
   end
 
   #these two methods are needed to save and load games from NSUserDefaults

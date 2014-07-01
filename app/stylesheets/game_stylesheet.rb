@@ -139,6 +139,20 @@ class GameStylesheet < ApplicationStylesheet
     st.left = 165
   end
 
+  def burn_icon_1(st)
+    st.width = 12
+    st.height = 12
+    st.top = 324
+    st.left = 138
+  end
+
+  def burn_icon_2(st)
+    st.width = 12
+    st.height = 12
+    st.top = 324
+    st.left = 258
+  end
+
   def action_text(st)
     st.top = 470
     st.width = 300
@@ -159,14 +173,14 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def overlay_close(st)
-    st.top = 41
-    st.left = rmq.device.width - 46
-    st.height = 26
-    st.width = 26
+    st.width = 25
+    st.height = 25
+    st.top = 42
+    st.left = 275
     st.background_color = color.from_hex("fd1b14")
     st.color = color.white
     st.text = "X"
-    st.layer.cornerRadius = 13
+    st.layer.cornerRadius = 12
     st.font = rmq.font.small
   end
 
