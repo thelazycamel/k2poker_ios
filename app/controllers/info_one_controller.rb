@@ -8,6 +8,7 @@ class InfoOneController < UIViewController
     rmq(self.view).apply_style :root_view
     @game = Game.load
     show_scores
+    set_up_event_listeners
   end
 
   def initWithNibName(name, bundle: bundle)
@@ -45,6 +46,12 @@ class InfoOneController < UIViewController
         st.color = rmq.color.from_hex("14fd64") if top_number == @game.score
       end
       top_number = top_number / 2
+    end
+  end
+
+  def set_up_event_listeners
+    rmq(self.view).on(:swipe_left) do |sender|
+      puts "loading info page 2"
     end
   end
 

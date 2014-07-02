@@ -11,8 +11,17 @@ module EventListeners
   end
 
   def info_button
+    rmq(self.view).on(:swipe_left) do |sender|
+      load_info_navigation
+    end
+
     rmq(:info).on(:touch) do |sender|
-      #controller = InfoOneController.alloc.initWithNibName(nil, bundle:nil)
+      load_info_navigation
+    end
+  end
+
+  #TODO move this method elsewhere
+  def load_info_navigation
       tabbar = UITabBarController.alloc.init
       tabbar.viewControllers = [
         InfoOneController.alloc.initWithNibName(nil, bundle:nil),
@@ -21,7 +30,6 @@ module EventListeners
       ]
       tabbar.selectedIndex = 0
       self.navigationController.pushViewController(tabbar, animated: true)
-    end
   end
 
   def settings_button
