@@ -33,7 +33,7 @@ class InfoOneController < UIViewController
   end
 
   def score_grid
-    if @game.score < 1000000
+    if @game.score <= 1048576
       top_number = 1048576
     else
       top_number = @game.score * 2 * 2 * 2 * 2 * 2
@@ -43,7 +43,7 @@ class InfoOneController < UIViewController
       text += " (r)" if @game.rebuys.include?(top_number)
       rmq.append(UILabel, "score_#{line}".to_sym).style do |st|
         st.text = text
-        st.color = rmq.color.from_hex("14fd64") if top_number == @game.score
+        st.color = rmq.color.white if top_number == @game.score
       end
       top_number = top_number / 2
     end
