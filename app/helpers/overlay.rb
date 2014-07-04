@@ -35,6 +35,7 @@ module Overlay
   end
 
   def overlay_win
+    win_sound
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "WIN"}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = formatted_score(@game.score)  }
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @quick_fire.to_hash[:winner][:rank] }
@@ -44,6 +45,7 @@ module Overlay
   end
 
   def overlay_lose
+    lose_sound
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "LOSE"; st.color = rmq.color.from_hex("fd1b14")}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = formatted_score(@game.score); st.color = rmq.color.from_hex("fd1b14") }
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @game.score == @game.high_score ? "New High Score" : "Beaten By" }

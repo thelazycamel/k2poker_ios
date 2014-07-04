@@ -100,6 +100,7 @@ module EventListeners
         }
         #TODO alter this to do a chain of events passing one card after the other perhaps just drop and fade, on the last one clean up 
         rmq(:card_1, :card_2, :comp_card_1, :comp_card_2, :table_card_1, :table_card_2, :table_card_3, :table_card_4, :table_card_5).animations.drop_and_spin
+        fold_sound
         rmq(:folding).animate(opts)
       end
     end

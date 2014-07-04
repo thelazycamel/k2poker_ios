@@ -31,7 +31,7 @@ module GameHelper
             rmq(:card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_1}_big") }
             rmq(:card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_2}_big") }
             rmq(card).animate({
-              duration: 0.2,
+              duration: 0.25,
               animations: ->(c) {
                 c.style do |st|
                   st.opacity = 1.0
@@ -49,6 +49,7 @@ module GameHelper
         }
       }
       rmq(card).animate(opts)
+      card_deal_sound
     end
   end
 
@@ -69,10 +70,11 @@ module GameHelper
       redraw_scene
       return
     end
+    card_deal_sound
     final_pos = rmq(card).get.frame.origin.y
     rmq(card).style {|st| st.top = -100; st.rotation = 45 }
     rmq(card).animate({
-      duration: 0.2,
+      duration: 0.25,
       animations: ->(c) {
         c.style do |st|
           st.opacity = 1.0
@@ -86,6 +88,34 @@ module GameHelper
         end
       }
     })
+  end
+
+  def win_sound
+    file_name = "chipsHandle#{Random.rand(4) + 1}"
+    path = NSBundle.mainBundle.pathForResource(file_name, ofType: 'wav')
+    play_sound(path)
+  end
+
+  def lose_sound
+    path = NSBundle.mainBundle.pathForResource('cardFan', ofType: 'wav')
+    play_sound(path)
+  end
+
+  def fold_sound
+    path = NSBundle.mainBundle.pathForResource('fold', ofType: 'wav')
+    play_sound(path)
+  end
+
+  def card_deal_sound
+    file_name = "cardSlide#{Random.rand(8) + 1}"
+    path = NSBundle.mainBundle.pathForResource(file_name, ofType: 'wav')
+    play_sound(path)
+  end
+
+  def play_sound(path)
+    sound_id = Pointer.new('I')
+    AudioServicesCreateSystemSoundID(NSURL.fileURLWithPath(path), sound_id)
+    AudioServicesPlaySystemSound(sound_id[0])
   end
 
   def hide_card(card)

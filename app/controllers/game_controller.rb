@@ -1,6 +1,5 @@
 class GameController < UIViewController
 
-  include BubbleWrap::KVO
   include GameHelper
   include EventListeners
   include GamePlay

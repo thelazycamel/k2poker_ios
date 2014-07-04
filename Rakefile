@@ -4,7 +4,6 @@ require 'motion/project/template/ios'
 require 'bundler'
 require 'ruby-poker'
 require 'poker_motion'
-require 'bubble-wrap'
 
 Bundler.require
 
@@ -35,7 +34,7 @@ Motion::Project::App.setup do |app|
   #
   # app.fonts = ['Oswald-Regular.ttf', 'FontAwesome.otf'] # These go in /resources
   # app.frameworks += %w(QuartzCore CoreGraphics MediaPlayer MessageUI CoreData)
-  #
+  app.frameworks += ['MediaPlayer']
   # app.vendor_project('vendor/Flurry', :static)
   # app.vendor_project('vendor/DSLCalendarView', :static, :cflags => '-fobjc-arc') # Using arc
   #
