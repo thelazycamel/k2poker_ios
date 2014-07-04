@@ -8,7 +8,6 @@ class InfoOneController < UIViewController
     rmq(self.view).apply_style :root_view
     @game = Game.load
     show_scores
-    set_up_event_listeners
   end
 
   def initWithNibName(name, bundle: bundle)
@@ -25,11 +24,16 @@ class InfoOneController < UIViewController
   end
 
   def show_scores
+    rmq.append(UILabel, :high_score).style {|st| st.text = high_score_text }
     score_grid
   end
 
   def formatted_rebuys
     @game.rebuys.map {|rebuy| formatted_score(rebuy)}.join(", ")
+  end
+
+  def high_score_text
+    "Highest Score: #{formatted_score(@game.high_score)}"
   end
 
   def score_grid
@@ -46,12 +50,6 @@ class InfoOneController < UIViewController
         st.color = rmq.color.white if top_number == @game.score
       end
       top_number = top_number / 2
-    end
-  end
-
-  def set_up_event_listeners
-    rmq(self.view).on(:swipe_left) do |sender|
-      puts "loading info page 2"
     end
   end
 
