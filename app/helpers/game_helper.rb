@@ -107,7 +107,7 @@ module GameHelper
   end
 
   def card_deal_sound
-    file_name = "cardSlide#{Random.rand(8) + 1}"
+    file_name = "cardSlide#{Random.rand(5) + 1}"
     path = NSBundle.mainBundle.pathForResource(file_name, ofType: 'wav')
     play_sound(path)
   end
