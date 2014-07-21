@@ -91,28 +91,26 @@ module GameHelper
   end
 
   def win_sound
-    file_name = "chipsHandle#{Random.rand(4) + 1}"
-    path = NSBundle.mainBundle.pathForResource(file_name, ofType: 'wav')
-    play_sound(path)
+    file_name = "chipsHandle#{Random.rand(3) + 1}.wav"
+    play_sound(file_name)
   end
 
   def lose_sound
-    path = NSBundle.mainBundle.pathForResource('cardFan', ofType: 'wav')
-    play_sound(path)
+    play_sound("cardFan.wav")
   end
 
   def fold_sound
-    path = NSBundle.mainBundle.pathForResource('fold', ofType: 'wav')
-    play_sound(path)
+    play_sound("fold.wav")
   end
 
   def card_deal_sound
-    file_name = "cardSlide#{Random.rand(5) + 1}"
-    path = NSBundle.mainBundle.pathForResource(file_name, ofType: 'wav')
-    play_sound(path)
+    file_name = "cardSlide#{Random.rand(5) + 1}.wav"
+    play_sound(file_name)
   end
 
-  def play_sound(path)
+  def play_sound(file_name)
+    name, ext = file_name.split(".")
+    path = NSBundle.mainBundle.pathForResource(name, ofType: ext)
     sound_id = Pointer.new('I')
     AudioServicesCreateSystemSoundID(NSURL.fileURLWithPath(path), sound_id)
     AudioServicesPlaySystemSound(sound_id[0])

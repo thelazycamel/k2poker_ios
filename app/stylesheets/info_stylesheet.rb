@@ -164,107 +164,97 @@ class InfoStylesheet < ApplicationStylesheet
     st.view.lineBreakMode = NSLineBreakByWordWrapping
     st.color = color.white
     st.font = rmq.font.small
-    st.left = 10
-    st.width = 300
+    st.frame = {l: 10, w: 300}
   end
 
   def title(st)
-    st.left = 10
-    st.width = 300
-    st.height = 30
     st.color = color.from_hex("f8fd2d")
     st.font = rmq.font.small
+    st.frame = {l: 10, w: 300, h: 21}
   end
 
   def title_1(st)
     title(st)
     st.text_alignment = :center
-    st.top = 0
     st.text = "K2 Rules"
+    st.frame = {t: 0 }
   end
 
   def rules_1(st)
     rules(st)
-    st.top = 30
-    st.height = 150
+    st.frame = {h: 147, below_prev: 5}
     st.text = "Become the king of poker with just $1 in your pocket, double up until you reach $1 Million, playing a variation of everyones favourite ‘Texas Hold’em. The rules are very simple, especially if you have played any form of poker before."
   end
 
   def title_2(st)
     title(st)
-    st.top = 195
+    st.frame = { below_prev: 10, w: 300 }
     st.text = "Round 1 (The Deal)"
   end
 
   def rules_2(st)
     rules(st)
-    st.top = 215
-    st.height = 100
+    st.frame = { below_prev: 5, h: 84 }
     st.text ="Two cards are dealt to yourself and your opponent, you can discard (replace) either card to try and obtain a better one."
   end
 
   def title_3(st)
     title(st)
-    st.top = 325
+    st.frame = { below_prev: 10 }
     st.text = "Round 2 (The Flop)"
   end
 
   def rules_3(st)
     rules(st)
-    st.top = 335
-    st.height = 100
+    st.frame = { below_prev: 5, h: 63 }
     st.text = "Three cards are dealt to the table, again you can discard one of the cards to try and get a better one."
   end
 
   def title_4(st)
     title(st)
-    st.top = 428
+    st.frame = { below_prev: 10 }
     st.text = "Round 3 (The Turn)"
   end
 
   def rules_4(st)
     rules(st)
-    st.top = 440
-    st.height = 100
+    st.frame = { below_prev: 5, h: 63 }
     st.text = "A fourth card is dealt to the table, you have the option of discarding any one of your cards again."
   end
 
   def title_5(st)
     title(st)
-    st.top = 530
+    st.frame = { below_prev: 10 }
     st.text = "Round 4 (The River)"
   end
 
   def rules_5(st)
     rules(st)
-    st.top = 520
-    st.height = 190
+    st.frame = { below_prev: 5, h: 105 }
     st.text = "The fifth and final card is dealt to the table, now all cards are out, you only have the option to burn (discard both cards together), or play with the cards you have."
   end
 
   def title_6(st)
     title(st)
-    st.top = 680
+    st.frame = { below_prev: 10 }
     st.text = "Folding"
   end
 
   def rules_6(st)
     rules(st)
-    st.top = 690
-    st.height = 100
+    st.frame = { below_prev: 5, h: 63 }
     st.text = "You can use the fold option at anytime, a new hand will be dealt, but you will lose half your cash."
   end
 
   def title_7(st)
     title(st)
-    st.top = 780
+    st.frame = { below_prev: 10 }
     st.text = "Rebuys"
   end
 
   def rules_7(st)
     rules(st)
-    st.top = 810
-    st.height = 150
+    st.frame = { below_prev: 5, h: 147 }
     st.text = "A Rebuy will be awarded at $1,024, if you lose from this point on, you will automatically rebuy back in at that value. You will also be awarded a rebuy for a Straight Flush and Royal Flush for the cash value you have at the time of getting the hand."
   end
 

@@ -4,6 +4,7 @@ require 'motion/project/template/ios'
 require 'bundler'
 require 'ruby-poker'
 require 'poker_motion'
+require 'bubble-wrap/media'
 
 Bundler.require
 

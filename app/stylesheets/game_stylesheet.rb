@@ -4,6 +4,10 @@ class GameStylesheet < ApplicationStylesheet
     st.background_image = image.resource("background")
   end
 
+  def media_player(st)
+
+  end
+
   def score(st)
     st.width = 300
     st.height = 50

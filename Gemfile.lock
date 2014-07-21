@@ -12,18 +12,22 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    bubble-wrap (1.6.0)
+      bubble-wrap-http (= 1.6.0)
+    bubble-wrap-http (1.6.0)
     motion-bundler (0.2.1)
       thor
     rake (10.3.2)
-    ruby_motion_query (0.5.8)
+    ruby_motion_query (0.6.1)
     thor (0.19.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bubble-wrap
   motion-bundler
   poker_motion!
   rake
   ruby-poker!
-  ruby_motion_query
+  ruby_motion_query (~> 0.6.1)
