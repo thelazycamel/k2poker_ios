@@ -67,7 +67,6 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def table_card_1(st)
-    st.layer.cornerRadius = 7
     st.width = 57
     st.height = 75
     st.top = 175
@@ -75,7 +74,6 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def table_card_2(st)
-    st.layer.cornerRadius = 7
     st.width = 57
     st.height = 75
     st.top = 175
@@ -83,7 +81,6 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def table_card_3(st)
-    st.layer.cornerRadius = 7
     st.width = 57
     st.height = 75
     st.top = 175
@@ -91,7 +88,6 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def table_card_4(st)
-    st.layer.cornerRadius = 7
     st.width = 57
     st.height = 75
     st.top = 175
@@ -99,7 +95,6 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def table_card_5(st)
-    st.layer.cornerRadius = 7
     st.width = 57
     st.height = 75
     st.top = 175

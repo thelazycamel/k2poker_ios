@@ -44,9 +44,9 @@ class InfoOneController < UIViewController
     end
     21.times do |line|
       text = formatted_score(top_number)
-      text += " (r)" if @game.rebuys.include?(top_number)
       rmq.append(UILabel, "score_#{line}".to_sym).style do |st|
         st.text = text
+        st.color = rmq.color.from_hex("63FE0D") if @game.rebuys.include?(top_number)
         st.color = rmq.color.white if top_number == @game.score
       end
       top_number = top_number / 2

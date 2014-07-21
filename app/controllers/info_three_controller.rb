@@ -25,7 +25,7 @@ class InfoThreeController < UIViewController
     @scrollarea = rmq(self.view).append(UIScrollView, :scroll_area).get
     @scrollarea.frame = CGRectMake(0,70, 320, 450)
     @scrollarea.scrollEnabled = true
-    @scrollarea.contentSize = CGSizeMake(@scrollarea.frame.size.width, 1000)
+    @scrollarea.contentSize = CGSizeMake(@scrollarea.frame.size.width, 950)
     @scrollarea.showsHorizontalScrollIndicator = false
     @scrollarea.showsVerticalScrollIndicator = true
     rmq(:scroll_area).append(UILabel, :title_1)
