@@ -50,6 +50,14 @@ class GameStylesheet < ApplicationStylesheet
     st.view.text = "Rebuys 0"
   end
 
+  def rebuy_awarded(st)
+    st.width = 75
+    st.height = 75
+    st.top = 245
+    st.left = 25
+    st.background_image = rmq.image.resource("rebuy_awarded")
+  end
+
   def comp_card_1(st)
     st.width = 57
     st.height = 75

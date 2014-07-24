@@ -1,5 +1,7 @@
 module GamePlay
 
+  #REFACTOR THIS INTO A CLASS
+
   def deal
     @quick_fire.deal
     rmq(:card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(1).card_1}_big") }
@@ -27,6 +29,9 @@ module GamePlay
     @quick_fire.finished
     winner = @quick_fire.to_hash[:winner]
     @game.high_score = @game.score if @game.score > @game.high_score
+    rebuy_added = false
+    rebuy_used = false
+    previous_score = @game.score
     if winner[:id] == 1
       rmq(:play).style {|st| st.text = "Next Hand" }
       if winner[:rank] == "Straight Flush" || winner[:rank] == "Royal Flush"
@@ -35,6 +40,7 @@ module GamePlay
       @game.score = @game.score * 2
       if @game.score == 1024 && !@game.rebuy_obtained
         add_rebuy(1024)
+        rebuy_added = true
         @game.rebuy_obtained = true
       end
     elsif winner[:id] == 2
@@ -42,9 +48,11 @@ module GamePlay
         @game.open = false
         rmq(:play).style {|st| st.text = "Play Again?" }
       else
+        rebuy_used = true
         @game.score = @game.rebuys.shift
       end
     end
+    show_overlay(rebuy_added, rebuy_used, previous_score)
   end
 
   def next_hand
@@ -60,7 +68,7 @@ module GamePlay
   def start_new_game
     @quick_fire = PokerMotion::QuickFire.new
     rmq(:play).style {|st| st.text = "Play" }
-    @game.score = 1
+    @game.score = 512
     @game.rebuys = []
     @game.rebuy_obtained = false
     @game.open = true

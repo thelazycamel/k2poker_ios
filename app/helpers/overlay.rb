@@ -1,6 +1,6 @@
 module Overlay
 
-  def show_overlay
+  def show_overlay(rebuy_added, rebuy_used, previous_score)
     rmq.wrap(rmq.app.window).tap do |ol|
       ol.append(UIView, :overlay).animations.fade_in(duration: 1)
       ol.append(UIButton, :overlay_close).animations.fade_in(duration: 1)
@@ -13,8 +13,9 @@ module Overlay
       ol.append(UIButton, :win_card_4).animations.fade_in(duration: 1)
       ol.append(UIButton, :win_card_5).animations.fade_in(duration: 1)
       ol.append(UIButton, :win_button).animations.fade_in(duration: 1)
+      ol.append(UILabel, :rebuy_awarded).animations.fade_in(duration: 1) if rebuy_added
 
-      overlay_elements = [:win_button, :overlay, :overlay_close, :win_text, :win_total, :win_type, :win_card_1, :win_card_2, :win_card_3, :win_card_4, :win_card_5, :share_button, :rate_button, :high_score]
+      overlay_elements = [:win_button, :overlay, :overlay_close, :win_text, :win_total, :rebuy_awarded, :win_type, :win_card_1, :win_card_2, :win_card_3, :win_card_4, :win_card_5, :share_button, :rate_button, :high_score]
 
       ol.find(:win_button).on(:touch) do |sender|
         ol.find(overlay_elements).hide.remove
@@ -29,12 +30,12 @@ module Overlay
     end
 
     winner = @quick_fire.to_hash[:winner]
-    overlay_win if winner[:id] == 1
+    overlay_win(rebuy_added) if winner[:id] == 1
     overlay_draw if winner[:draw] == true
-    overlay_lose if winner[:id] == 2
+    overlay_lose(rebuy_used, previous_score) if winner[:id] == 2
   end
 
-  def overlay_win
+  def overlay_win(rebuy_added)
     win_sound
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "WIN"}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = formatted_score(@game.score)  }
@@ -44,13 +45,15 @@ module Overlay
     display_share_buttons
   end
 
-  def overlay_lose
+  def overlay_lose(rebuy_used, previous_score)
     lose_sound
+    score = rebuy_used ? formatted_score(previous_score) : formatted_score(@game.score)
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "LOSE"; st.color = rmq.color.from_hex("fd1b14")}
-    rmq(rmq.app.window).find(:win_total).style {|st| st.text = formatted_score(@game.score); st.color = rmq.color.from_hex("fd1b14") }
+    rmq(rmq.app.window).find(:win_total).style {|st| st.text = score; st.color = rmq.color.from_hex("fd1b14") }
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @game.score == @game.high_score ? "New High Score" : "Beaten By" }
     display_overlay_winning_cards
-    display_win_button("Play Again?")
+    button_text = rebuy_used ? "Play (Rebuy)" : "Play Again?"
+    display_win_button(button_text)
     if @game.score == @game.high_score
       display_share_buttons
     else

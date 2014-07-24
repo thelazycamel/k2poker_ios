@@ -63,7 +63,6 @@ module EventListeners
         river
       when :river
         finished
-        show_overlay
       when :finished
         next_hand
       end
