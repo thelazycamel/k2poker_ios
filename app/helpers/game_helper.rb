@@ -95,6 +95,10 @@ module GameHelper
     play_sound(file_name)
   end
 
+  def applause_sound
+    play_sound("applause.mp3")
+  end
+
   def lose_sound
     play_sound("cardFan.wav")
   end

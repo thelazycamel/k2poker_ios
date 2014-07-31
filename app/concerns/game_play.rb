@@ -31,10 +31,12 @@ module GamePlay
     @game.high_score = @game.score if @game.score > @game.high_score
     rebuy_added = false
     rebuy_used = false
+    top_score_achieved = false
     previous_score = @game.score
     if winner[:id] == 1
       rmq(:play).style {|st| st.text = "Next Hand" }
       if winner[:rank] == "Straight Flush" || winner[:rank] == "Royal Flush"
+        rebuy_added = true
         add_rebuy(@game.score)
       end
       @game.score = @game.score * 2
@@ -42,6 +44,18 @@ module GamePlay
         add_rebuy(1024)
         rebuy_added = true
         @game.rebuy_obtained = true
+      end
+      if @game.score == 1048576 && !game.million_rebuy
+        applause_sound
+        add_rebuy(1048576)
+        rebuy_added = true
+        @game.million_rebuy = true
+      end
+      if @game.score >= 274877906944
+        applause_sound
+        @game.open = false
+        top_score_achieved = true
+        rmq(:play).style {|st| st.text = "Game Over"}
       end
     elsif winner[:id] == 2
       if @game.rebuys.empty?
@@ -52,7 +66,7 @@ module GamePlay
         @game.score = @game.rebuys.shift
       end
     end
-    show_overlay(rebuy_added, rebuy_used, previous_score)
+    show_overlay(rebuy_added, rebuy_used, previous_score, top_score_achieved)
   end
 
   def next_hand
@@ -71,6 +85,7 @@ module GamePlay
     @game.score = 1
     @game.rebuys = []
     @game.rebuy_obtained = false
+    @game.million_rebuy = false
     @game.open = true
     deal
   end
