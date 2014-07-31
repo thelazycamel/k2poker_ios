@@ -1,6 +1,7 @@
 class InfoOneController < UIViewController
 
   include GameHelper
+  include NumberHelper
 
   def viewDidLoad
     super

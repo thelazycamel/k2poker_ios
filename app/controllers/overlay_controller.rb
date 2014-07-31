@@ -1,6 +1,7 @@
 class OverlayController
 
   include SoundsHelper
+  include NumberHelper
 
   VIEWS = {
     overlay: UIView,
@@ -50,6 +51,10 @@ class OverlayController
     rmq(rmq.app.window).find(all_overlay_elements).hide.remove
   end
 
+  def self.remove
+    self.new(nil,nil,nil,{}).remove
+  end
+
   private
 
   def all_overlay_elements
@@ -75,7 +80,7 @@ class OverlayController
 
   def show_lose_detail
     lose_sound
-    score = @rebuy_used ? formatted_score(previous_score) : formatted_score(@game.score)
+    score = @rebuy_used ? formatted_score(@previous_score) : formatted_score(@game.score)
     rmq(rmq.app.window).append(UILabel, :rebuy_used).animations.fade_in(duration: 1) if @rebuy_used
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "LOSE"; st.color = rmq.color.from_hex("fd1b14")}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = score; st.color = rmq.color.from_hex("fd1b14") }
@@ -115,6 +120,7 @@ class OverlayController
     overlay.find(:win_button).on(:touch) do |sender|
       remove
       @game_controller.next_hand
+      @game_controller.redraw_scene
     end
 
     overlay.find(:overlay_close).on(:touch) do |sender|

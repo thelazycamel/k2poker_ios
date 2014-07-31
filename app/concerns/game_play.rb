@@ -66,11 +66,8 @@ module GamePlay
         @game.score = @game.rebuys.shift
       end
     end
-    #show_overlay(rebuy_added, rebuy_used, previous_score, top_score_achieved)
-    puts ############
-    puts self
-    puts ############
-    OverlayController.new(self, @game, @quick_fire, {rebuy_added: rebuy_added, rebuy_used: rebuy_used, previous_score: previous_score, top_score_achieved: top_score_achieved}).show
+    opts_hash = {rebuy_added: rebuy_added, rebuy_used: rebuy_used, previous_score: previous_score, top_score_achieved: top_score_achieved}
+    OverlayController.new(self, @game, @quick_fire, opts_hash).show
   end
 
   def next_hand
@@ -87,6 +84,7 @@ module GamePlay
     @quick_fire = PokerMotion::QuickFire.new
     rmq(:play).style {|st| st.text = "Play" }
     @game.score = 1
+    @game.high_score = 1
     @game.rebuys = []
     @game.rebuy_obtained = false
     @game.million_rebuy = false

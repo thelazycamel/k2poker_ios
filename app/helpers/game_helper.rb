@@ -8,10 +8,6 @@ module GameHelper
     end
   end
 
-  def formatted_score(score)
-    rmq.format.number(score, "$###,###,###,###,###,##0")
-  end
-
   def discard_cards(cards)
     cards.each do |card|
       start_pos = rmq(card).get.frame.origin.y

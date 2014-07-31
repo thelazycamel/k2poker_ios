@@ -12,6 +12,7 @@ module EventListeners
 
   def info_button
     rmq(self.view).on(:swipe_left) do |sender|
+      OverlayController.remove
       load_info_navigation
     end
 

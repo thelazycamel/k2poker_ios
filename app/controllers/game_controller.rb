@@ -2,6 +2,7 @@ class GameController < UIViewController
 
   include GameHelper
   include SoundsHelper
+  include NumberHelper
   include EventListeners
   include GamePlay
 
