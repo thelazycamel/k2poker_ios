@@ -66,7 +66,11 @@ module GamePlay
         @game.score = @game.rebuys.shift
       end
     end
-    show_overlay(rebuy_added, rebuy_used, previous_score, top_score_achieved)
+    #show_overlay(rebuy_added, rebuy_used, previous_score, top_score_achieved)
+    puts ############
+    puts self
+    puts ############
+    OverlayController.new(self, @game, @quick_fire, {rebuy_added: rebuy_added, rebuy_used: rebuy_used, previous_score: previous_score, top_score_achieved: top_score_achieved}).show
   end
 
   def next_hand

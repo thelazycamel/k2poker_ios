@@ -1,9 +1,9 @@
 class GameController < UIViewController
 
   include GameHelper
+  include SoundsHelper
   include EventListeners
   include GamePlay
-  include Overlay
 
   attr_accessor :game, :quick_fire
 

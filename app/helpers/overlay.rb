@@ -13,6 +13,7 @@ module Overlay
       ol.append(UIButton, :win_card_4).animations.fade_in(duration: 1)
       ol.append(UIButton, :win_card_5).animations.fade_in(duration: 1)
       ol.append(UIButton, :win_button).animations.fade_in(duration: 1)
+      #TODO
       ol.append(UILabel, :rebuy_awarded).animations.fade_in(duration: 1) if rebuy_added
       ol.append(UILabel, :rebuy_used).animations.fade_in(duration: 1) if rebuy_used
 
