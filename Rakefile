@@ -3,6 +3,7 @@ $:.unshift('/Library/RubyMotion/lib')
 require 'motion/project/template/ios'
 require 'bundler'
 require 'ruby-poker'
+require 'formotion'
 require 'poker_motion'
 require 'bubble-wrap/media'
 
@@ -26,7 +27,7 @@ Motion::Project::App.setup do |app|
   # prerendered_icon is only needed in iOS 6
   #app.prerendered_icon = true
 
-  app.device_family = [:iphone, :ipad]
+  app.device_family = [:iphone]
   app.interface_orientations = [:portrait, :portrait_upside_down]
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
@@ -35,7 +36,7 @@ Motion::Project::App.setup do |app|
   #
   # app.fonts = ['Oswald-Regular.ttf', 'FontAwesome.otf'] # These go in /resources
   # app.frameworks += %w(QuartzCore CoreGraphics MediaPlayer MessageUI CoreData)
-  app.frameworks += ['MediaPlayer']
+  app.frameworks += ['MediaPlayer',"Social", "Accounts"]
   # app.vendor_project('vendor/Flurry', :static)
   # app.vendor_project('vendor/DSLCalendarView', :static, :cflags => '-fobjc-arc') # Using arc
   #

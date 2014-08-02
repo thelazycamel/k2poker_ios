@@ -23,6 +23,7 @@ module SoundsHelper
   end
 
   def play_sound(file_name)
+    return if @game.sounds == false
     name, ext = file_name.split(".")
     path = NSBundle.mainBundle.pathForResource(name, ofType: ext)
     sound_id = Pointer.new('I')

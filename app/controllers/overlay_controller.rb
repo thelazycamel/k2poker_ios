@@ -40,11 +40,11 @@ class OverlayController
      VIEWS.each do |name, view_type|
        overlay.append(view_type, name).animations.fade_in(duration: 1)
      end
-    add_event_listeners(overlay)
    end
    show_win_detail if winner[:id] == 1
    show_draw_detail if winner[:draw] == true
    show_lose_detail if winner[:id] == 2
+   add_event_listeners
   end
 
   def remove
@@ -116,16 +116,22 @@ class OverlayController
     @quick_fire.to_hash[:winner]
   end
 
-  def add_event_listeners(overlay)
-    overlay.find(:win_button).on(:touch) do |sender|
+  def add_event_listeners
+
+    rmq(rmq.app.window).find(:win_button).on(:touch) do |sender|
       remove
       @game_controller.next_hand
       @game_controller.redraw_scene
     end
 
-    overlay.find(:overlay_close).on(:touch) do |sender|
+    rmq(rmq.app.window).find(:overlay_close).on(:touch) do |sender|
       remove
     end
+
+    rmq(rmq.app.window).find(:share_button).on(:touch) do |sender|
+      @game_controller.display_share_dialog
+    end
+
   end
 
 end

@@ -22,6 +22,10 @@ module GamePlay
   def river
     @quick_fire.river
     deal_cards(:table_card_5)
+    if @game.difficulty == 2 && @quick_fire.player(2).rank == "Highest Card" && @quick_fire.player(2).status != :discarded
+      @quick_fire.player(2).burn
+      burn_comp_cards
+    end
   end
 
   #TODO Tidy up this nasty method
@@ -84,7 +88,6 @@ module GamePlay
     @quick_fire = PokerMotion::QuickFire.new
     rmq(:play).style {|st| st.text = "Play" }
     @game.score = 1
-    @game.high_score = 1
     @game.rebuys = []
     @game.rebuy_obtained = false
     @game.million_rebuy = false

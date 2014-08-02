@@ -58,6 +58,60 @@ module GameHelper
     deal_card(0, cards)
   end
 
+  def burn_comp_cards
+    cards = [:comp_card_1, :comp_card_2]
+    cards.each do |card|
+      final_pos = rmq(card).get.frame.origin.y
+      rmq(card).animate({
+        duration: 0.25,
+        animations: ->(c) {
+          c.style do |st|
+            st.rotation = 0
+            st.top = -100
+          end
+        },  completion: ->(did_finish, q){
+          if did_finish
+           comp_card_redeal(card,final_pos)
+          end
+        }
+      })
+    end
+  end
+
+  def comp_card_redeal(card, final_pos)
+    card_deal_sound
+    rmq(card).style do |st|
+      st.rotation = card == :comp_card_1 ? 180 : 225
+    end
+    rmq(card).animate({
+      duration: 0.25,
+      animations: ->(c) {
+        c.style do |st|
+          st.rotation = 0
+          st.top = final_pos
+        end
+      }
+    })
+  end
+
+  def burn_comp_card_2
+    card = :comp_card_2
+    hide_card(card)
+    card_deal_sound
+    final_pos = rmq(card).get.frame.origin.y
+    rmq(card).style {|st| st.top = -100; st.rotation = 0 }
+    rmq(card).animate({
+      duration: 0.25,
+      animations: ->(c) {
+        c.style do |st|
+          st.opacity = 1.0
+          st.rotation = 45
+          st.top = final_pos
+        end
+      }
+    })
+  end
+
   def deal_card(index, cards)
     card = cards[index]
     if card.nil?

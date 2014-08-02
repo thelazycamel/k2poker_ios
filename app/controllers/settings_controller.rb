@@ -1,4 +1,5 @@
-class SettingsController < UIViewController
+#class SettingsController < UIViewController
+class SettingsController < Formotion::FormController
 
   def viewDidLoad
     super
@@ -12,6 +13,50 @@ class SettingsController < UIViewController
     super
     self.navigationController.setNavigationBarHidden(false)
     animated
+  end
+
+  def viewWillDisappear(animated)
+    super
+    values = self.form.render
+    @game.sounds = values[:sounds] unless values[:sounds].nil?
+    @game.difficulty = values[:difficulty] unless values[:difficulty].nil?
+    animated
+  end
+
+  def inject_game(game)
+    @game = game
+  end
+
+  def self.initialize_form(opts={})
+    form = Formotion::Form.new
+    form.build_section do |section|
+      section.title = "Settings"
+
+      section.build_row do |row|
+        row.title = "Sounds"
+        row.type = :switch
+        row.key = :sounds
+        row.value = opts[:sounds]
+      end
+    end
+    form.build_section do |section|
+      section.title = "Level"
+      section.key = :difficulty
+      section.select_one = true
+      section.build_row do |row|
+        row.title = "Easy"
+        row.key = 1
+        row.value = true if opts[:difficulty] == 1
+        row.type = :check
+      end
+      section.build_row do |row|
+        row.title = "Difficult"
+        row.value = true if opts[:difficulty] == 2
+        row.key = 2
+        row.type = :check
+      end
+    end
+    form
   end
 
 end

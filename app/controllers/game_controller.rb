@@ -3,6 +3,7 @@ class GameController < UIViewController
   include GameHelper
   include SoundsHelper
   include NumberHelper
+  include SocialHelper
   include EventListeners
   include GamePlay
 
@@ -126,6 +127,8 @@ class GameController < UIViewController
     @game.table_cards = @quick_fire.table_cards.join(",")
     @game.deck = @quick_fire.deck.join(",")
     @game.game_status = @quick_fire.game_status
+    @game.difficulty = @game.difficulty
+    @game.sounds = @game.sounds
     @game.player_1_status = @quick_fire.player(1).status
     @game.player_1_card_1 = @quick_fire.player(1).card_1
     @game.player_1_card_2 = @quick_fire.player(1).card_2

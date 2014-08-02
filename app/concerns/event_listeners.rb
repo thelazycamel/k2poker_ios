@@ -35,7 +35,9 @@ module EventListeners
 
   def settings_button
     rmq(:settings).on(:touch) do |sender|
-      controller = SettingsController.alloc.initWithNibName(nil, bundle:nil)
+      form = SettingsController.initialize_form({sounds: @game.sounds, difficulty: @game.difficulty})
+      controller = SettingsController.alloc.initWithForm(form)
+      controller.inject_game(@game)
       self.navigationController.pushViewController(controller, animated: true)
     end
   end
