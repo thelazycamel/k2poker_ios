@@ -32,18 +32,18 @@ module GamePlay
   def finished
     @quick_fire.finished
     winner = @quick_fire.to_hash[:winner]
-    @game.high_score = @game.score if @game.score > @game.high_score
     rebuy_added = false
     rebuy_used = false
     top_score_achieved = false
     previous_score = @game.score
     if winner[:id] == 1
+      @game.score = @game.score * 2
+      @game.high_score = @game.score if @game.score > @game.high_score
       rmq(:play).style {|st| st.text = "Next Hand" }
       if winner[:rank] == "Straight Flush" || winner[:rank] == "Royal Flush"
         rebuy_added = true
         add_rebuy(@game.score)
       end
-      @game.score = @game.score * 2
       if @game.score == 1024 && !@game.rebuy_obtained
         add_rebuy(1024)
         rebuy_added = true
