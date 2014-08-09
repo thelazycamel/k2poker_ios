@@ -6,6 +6,6 @@ gem 'formotion'
 gem 'motion-bundler'
 gem 'bubble-wrap'
 gem 'motion-social'
-gem 'poker_motion', path: '../poker_motion'
 gem 'ruby-poker', path: '../ruby-poker'
+gem 'poker_motion', path: '../poker_motion'
 
