@@ -124,12 +124,17 @@ class OverlayController
       @game_controller.redraw_scene
     end
 
+
     rmq(rmq.app.window).find(:overlay_close).on(:touch) do |sender|
       remove
     end
 
     rmq(rmq.app.window).find(:share_button).on(:touch) do |sender|
       @game_controller.display_share_dialog
+    end
+
+    rmq(rmq.app.window).find(:rate_button).on(:touch) do |sender|
+      App.open_url("https://itunes.apple.com/us/app/k2-poker/id912153432?ls=1&mt=8")
     end
 
   end
