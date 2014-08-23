@@ -23,7 +23,11 @@ class InfoThreeController < UIViewController
 
   def show_rules
     @scrollarea = rmq(self.view).append(UIScrollView, :scroll_area).get
-    @scrollarea.frame = CGRectMake(0,70, 320, 450)
+    if rmq.device.four_inch?
+      @scrollarea.frame = CGRectMake(0,70, 320, 450)
+    else
+      @scrollarea.frame = CGRectMake(0,70, 320, 400)
+    end
     @scrollarea.scrollEnabled = true
     @scrollarea.contentSize = CGSizeMake(@scrollarea.frame.size.width, 950)
     @scrollarea.showsHorizontalScrollIndicator = false

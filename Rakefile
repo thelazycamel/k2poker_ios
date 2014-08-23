@@ -42,7 +42,7 @@ Motion::Project::App.setup do |app|
   #
   # app.pods do
   #   pod 'AFNetworking'
-  #   pod 'SVProgressHUD'
+  #   pod 'SVPrograssHUD'
   #   pod 'JMImageCache'
   # end
  

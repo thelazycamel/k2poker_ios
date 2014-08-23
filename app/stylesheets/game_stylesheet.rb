@@ -1,7 +1,11 @@
 class GameStylesheet < ApplicationStylesheet
 
   def root_view(st)
-    st.background_image = image.resource("background")
+    if rmq.device.four_inch?
+      st.background_image = image.resource("background")
+    else
+      st.background_image = image.resource("background35")
+    end
   end
 
   def media_player(st)
@@ -130,9 +134,13 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def play(st)
+    if rmq.device.four_inch?
+      st.top = 260
+    else
+      st.top = 255
+    end
     st.width = 150
     st.height = 50
-    st.top = 260
     st.left = 85
     st.font = rmq.font.medium
     st.background_color = color.from_hex("45b209")
@@ -141,17 +149,25 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def card_1(st)
-    st.width = 110
-    st.height = 146
-    st.top = 320
+    if rmq.device.four_inch?
+      st.top = 320
+    else
+      st.top = 310
+    end
     st.left = 45
+    st.height = 146
+    st.width = 110
   end
 
   def card_2(st)
+    if rmq.device.four_inch?
+      st.top = 320
+    else
+      st.top = 310
+    end
+    st.left = 165
     st.width = 110
     st.height = 146
-    st.top = 320
-    st.left = 165
   end
 
   def burn_icon_1(st)
@@ -169,7 +185,11 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def action_text(st)
-    st.top = 470
+    if rmq.device.four_inch?
+      st.top = 470
+    else
+      st.top = 450
+    end
     st.width = 300
     st.height = 30
     st.left = 10
@@ -181,7 +201,11 @@ class GameStylesheet < ApplicationStylesheet
   def overlay(st)
     st.top = 30
     st.left = 10
-    st.height = 487
+    if rmq.device.four_inch?
+      st.height = 487
+    else
+      st.height = 447
+    end
     st.width = 300
     st.background_color = color.from_rgba(0,53,81,0.75)
     st.layer.cornerRadius = 10

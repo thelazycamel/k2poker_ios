@@ -5,7 +5,11 @@ class InfoStylesheet < ApplicationStylesheet
   end
 
   def high_score(st)
-    st.top = 480
+    if rmq.device.four_inch?
+      st.top = 480
+    else
+      st.top = 400
+    end
     st.left = 10
     st.width = 300
     st.height = 25
@@ -15,7 +19,11 @@ class InfoStylesheet < ApplicationStylesheet
   end
 
   top = 40
-  size = 35
+  if rmq.device.four_inch?
+    size = 35
+  else
+    size = 32
+  end
   21.times do |line|
     define_method("score_#{line}") do |st|
       st.top = top
@@ -33,67 +41,75 @@ class InfoStylesheet < ApplicationStylesheet
   def royal_flush(st)
     st.width = 141
     st.height = 35
-    st.top = 90
+    if rmq.device.four_inch?
+      st.top = 85
+    else
+      st.top = 70
+    end
     st.left = 150
     st.background_image = rmq.image.resource("royal_flush")
   end
 
   def straight_flush(st)
     royal_flush(st)
-    st.top = 130
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("straight_flush")
   end
 
   def four_of_a_kind(st)
     royal_flush(st)
-    st.top = 170
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("four_of_a_kind")
   end
 
   def full_house(st)
     royal_flush(st)
-    st.top = 210
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("full_house")
   end
 
   def flush(st)
     royal_flush(st)
-    st.top = 250
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("flush")
   end
 
   def straight(st)
     royal_flush(st)
-    st.top = 290
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("straight")
   end
 
   def three_of_a_kind(st)
     royal_flush(st)
-    st.top = 330
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("three_of_a_kind")
   end
 
   def two_pair(st)
     royal_flush(st)
-    st.top = 370
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("two_pair")
   end
 
   def pair(st)
     royal_flush(st)
-    st.top = 410
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("pair")
   end
 
   def high_card(st)
     royal_flush(st)
-    st.top = 450
+    st.frame = rmq.device.four_inch? ? { below_prev: 7 } : { below_prev: 1 }
     st.background_image = rmq.image.resource("high_card")
   end
 
   def royal_flush_text(st)
-    st.top = 95
+    if rmq.device.four_inch?
+      st.top = 90
+    else
+      st.top = 75
+    end
     st.left = 20
     st.width = 130
     st.height = 25
@@ -104,55 +120,55 @@ class InfoStylesheet < ApplicationStylesheet
 
   def straight_flush_text(st)
     royal_flush_text(st)
-    st.top = 135
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 10 }
     st.text = "Straight Flush"
   end
 
   def four_of_a_kind_text(st)
     royal_flush_text(st)
-    st.top = 175
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Four of a Kind"
   end
 
   def full_house_text(st)
     royal_flush_text(st)
-    st.top = 215
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Full House"
   end
 
   def flush_text(st)
     royal_flush_text(st)
-    st.top = 255
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Flush"
   end
 
   def straight_text(st)
     royal_flush_text(st)
-    st.top = 295
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Straight"
   end
 
   def three_of_a_kind_text(st)
     royal_flush_text(st)
-    st.top = 335
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Three of a Kind"
   end
 
   def two_pair_text(st)
     royal_flush_text(st)
-    st.top = 375
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Two Pair"
   end
 
   def pair_text(st)
     royal_flush_text(st)
-    st.top = 415
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "Pair"
   end
 
   def high_card_text(st)
     royal_flush_text(st)
-    st.top = 455
+    st.frame = rmq.device.four_inch? ? { below_prev: 17 } : { below_prev: 11 }
     st.text = "High Card"
   end
 
@@ -195,7 +211,7 @@ class InfoStylesheet < ApplicationStylesheet
   def rules_2(st)
     rules(st)
     st.frame = { below_prev: 5, h: 84 }
-    st.text ="Two cards are dealt to yourself and your opponent, you can discard (replace) either card to try and obtain a better one."
+    st.text ="Two cards are dealt to yourself and your opponent, you can discard (swipe up) either card to try and obtain a better hand."
   end
 
   def title_3(st)

@@ -112,13 +112,14 @@ class GameController < UIViewController
   end
 
   def show_burn_options
-    if @quick_fire.player(1).status == :discarded
-      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("no_entry") }
-    elsif @quick_fire.game_status == :river
-      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("discard") }
-    else
-      rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("empty") }
-    end
+    return #TODO something better than this!
+    #if @quick_fire.player(1).status == :discarded
+    #  rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("no_entry") }
+    #elsif @quick_fire.game_status == :river
+    #  rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("discard") }
+    #else
+    #  rmq(:burn_icon).style {|st| st.background_image = rmq.image.resource("empty") }
+    #end
   end
 
   #these two methods are needed to save and load games from NSUserDefaults
