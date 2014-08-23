@@ -1,20 +1,22 @@
+GIT
+  remote: https://github.com/thelazycamel/ruby-poker.git
+  revision: faf44dbe34dc7711e0e7feff0ee3f2176817d727
+  branch: rubymotion
+  specs:
+    ruby-poker (1.0.1)
+
 PATH
   remote: ../poker_motion
   specs:
     poker_motion (0.0.1)
-      ruby-poker (= 1.0.0)
-
-PATH
-  remote: ../ruby-poker
-  specs:
-    ruby-poker (1.0.0)
+      ruby-poker (= 1.0.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    bubble-wrap (1.6.0)
-      bubble-wrap-http (= 1.6.0)
-    bubble-wrap-http (1.6.0)
+    bubble-wrap (1.7.0)
+      bubble-wrap-http (= 1.7.0)
+    bubble-wrap-http (1.7.0)
     formotion (1.8)
       bubble-wrap (>= 1.4.0)
       motion-require (>= 0.1.0)

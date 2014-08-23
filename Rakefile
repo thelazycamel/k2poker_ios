@@ -2,9 +2,9 @@
 $:.unshift('/Library/RubyMotion/lib')
 require 'motion/project/template/ios'
 require 'bundler'
-require 'ruby-poker'
 require 'formotion'
 require 'poker_motion'
+require 'ruby-poker'
 require 'bubble-wrap/media'
 
 Bundler.require

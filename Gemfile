@@ -6,6 +6,6 @@ gem 'formotion'
 gem 'motion-bundler'
 gem 'bubble-wrap'
 gem 'motion-social'
-gem 'ruby-poker', path: '../ruby-poker'
 gem 'poker_motion', path: '../poker_motion'
 
+gem 'ruby-poker', git: "https://github.com/thelazycamel/ruby-poker.git", branch: "rubymotion"
