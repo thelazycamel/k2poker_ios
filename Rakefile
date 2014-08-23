@@ -15,8 +15,7 @@ Motion::Project::App.setup do |app|
   app.identifier = '912153432'
   app.short_version = '1.0.0'
   app.version = app.short_version
-  app.provisioning_profile = "~/Library/MobileDevice/Provisioning\ Profiles
-  22EF87C0-5BBA-46DB-8807-1B07002C2C03.mobileprovision"
+  app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/22EF87C0-5BBA-46DB-8807-1B07002C2C03.mobileprovision"
 
   app.sdk_version = '7.1'
   app.deployment_target = '7.0'
