@@ -11,11 +11,13 @@ Bundler.require
 
 Motion::Project::App.setup do |app|
 
-  app.name = 'K2poker'
-  app.identifier = '912153432'
-  app.short_version = '1.0.0'
+  app.name = 'K2 Poker'
+  app.identifier = 'com.k2app.net.k2poker'
+  app.short_version = '1.0'
   app.version = app.short_version
-  app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/a6cecd9e-112e-4bc8-b787-f46a6a4ab9d5.mobileprovision"
+  app.release do
+    app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/8573a701-8ec9-4151-accf-628ba8457b1e.mobileprovision"
+  end
 
   app.sdk_version = '7.1'
   app.deployment_target = '7.0'
