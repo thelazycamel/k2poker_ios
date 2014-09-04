@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/thelazycamel/ruby-poker.git
-  revision: 3aee0fa1579768dc623502d398df950bde99f624
+  revision: 3dcf09785b395a4f910aee8376fb57628ccd0b72
   branch: rubymotion
   specs:
     ruby-poker (1.0.1)
