@@ -76,6 +76,7 @@ module EventListeners
   def fold_button
     rmq(:fold).on(:touch) do |sender|
       rmq(:fold).off
+      rmq(:play).off
       unless  @quick_fire.game_status == :finished
         if @game.score > 1
           @game.score = @game.score / 2
@@ -96,6 +97,7 @@ module EventListeners
               redraw_scene
               q.hide.remove
               fold_button
+              play_button
               deal
             end
           }
