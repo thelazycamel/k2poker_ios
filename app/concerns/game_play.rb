@@ -97,7 +97,7 @@ module GamePlay
 
   def add_rebuy(value)
     @game.rebuys << value
-    @game.rebuys.sort
+    @game.rebuys.sort.reverse
   end
 
 end
