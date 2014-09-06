@@ -35,7 +35,6 @@ class GameController < UIViewController
   end
 
   def leadbolt_tracking
-    #[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleModuleFail) name:@"onModuleFailed" object:@"AppFireworksNotification"]
     NSNotificationCenter.defaultCenter.addObserver(self, selector:"handle_module_fail", name:"OnModuleFailed", object:"AppFireworksNotification")
     AppTracker.startSession("1aBJRPd9qaokOvN6b5qH97riXkdEL7Hd", view:self.view)
   end
