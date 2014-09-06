@@ -39,8 +39,8 @@ Motion::Project::App.setup do |app|
   #
   # app.fonts = ['Oswald-Regular.ttf', 'FontAwesome.otf'] # These go in /resources
   # app.frameworks += %w(QuartzCore CoreGraphics MediaPlayer MessageUI CoreData)
-  app.frameworks += ['MediaPlayer',"Social", "Accounts"]
-  # app.vendor_project('vendor/Flurry', :static)
+  app.frameworks += ['MediaPlayer',"Social", "Accounts","AdSupport","SystemConfiguration","CoreMotion","StoreKit"]
+  app.vendor_project('vendor/leadbolt', :static)
   # app.vendor_project('vendor/DSLCalendarView', :static, :cflags => '-fobjc-arc') # Using arc
   #
   # app.pods do

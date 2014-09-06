@@ -8,14 +8,10 @@ class GameStylesheet < ApplicationStylesheet
     end
   end
 
-  def media_player(st)
-
-  end
-
   def score(st)
     st.width = 300
     st.height = 50
-    st.top = 30
+    st.top = rmq.device.four_inch? ? 30 : 26
     st.left = 10
     st.color = color.from_hex("f8fd2d")
     st.font = rmq.font.medium
@@ -41,7 +37,7 @@ class GameStylesheet < ApplicationStylesheet
   def rebuys(st)
     st.width = 75
     st.height = 75
-    st.top = 90
+    st.top = rmq.device.four_inch? ? 90 : 83
     st.left = 10
     st.view.clipsToBounds = "YES"
     st.layer.cornerRadius = 10
@@ -73,15 +69,15 @@ class GameStylesheet < ApplicationStylesheet
   def comp_card_1(st)
     st.width = 57
     st.height = 75
-    st.top = 90
+    st.top = rmq.device.four_inch? ? 90 : 83
     st.left = 100
     st.background_image = rmq.image.resource("card_back")
   end
 
   def comp_card_2(st)
     st.width = 57
+    st.top = rmq.device.four_inch? ? 90 : 83
     st.height = 75
-    st.top = 90
     st.left = 163
     st.background_image = rmq.image.resource("card_back")
   end
@@ -89,42 +85,42 @@ class GameStylesheet < ApplicationStylesheet
   def table_card_1(st)
     st.width = 57
     st.height = 75
-    st.top = 175
+    st.top = rmq.device.four_inch? ? 175 : 163
     st.left = 13
   end
 
   def table_card_2(st)
     st.width = 57
     st.height = 75
-    st.top = 175
+    st.top = rmq.device.four_inch? ? 175 : 163
     st.left = 72
   end
 
   def table_card_3(st)
     st.width = 57
     st.height = 75
-    st.top = 175
+    st.top = rmq.device.four_inch? ? 175 : 163
     st.left = 131
   end
 
   def table_card_4(st)
     st.width = 57
     st.height = 75
-    st.top = 175
+    st.top = rmq.device.four_inch? ? 175 : 163
     st.left = 190
   end
 
   def table_card_5(st)
     st.width = 57
     st.height = 75
-    st.top = 175
+    st.top = rmq.device.four_inch? ? 175 : 163
     st.left = 249
   end
 
   def fold(st)
     st.width = 75
     st.height = 75
-    st.top = 90
+    st.top = rmq.device.four_inch? ? 90 : 83
     st.left = 235
     st.layer.cornerRadius = 10
     st.background_color = color.from_hex("fd1b14")
@@ -134,13 +130,9 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def play(st)
-    if rmq.device.four_inch?
-      st.top = 260
-    else
-      st.top = 255
-    end
+    st.top = rmq.device.four_inch? ? 260 : 240
     st.width = 150
-    st.height = 50
+    st.height = rmq.device.four_inch? ? 50 : 40
     st.left = 85
     st.font = rmq.font.medium
     st.background_color = color.from_hex("45b209")
@@ -149,22 +141,14 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def card_1(st)
-    if rmq.device.four_inch?
-      st.top = 320
-    else
-      st.top = 310
-    end
+    st.top = rmq.device.four_inch? ? 320 : 283
     st.left = 45
     st.height = 146
     st.width = 110
   end
 
   def card_2(st)
-    if rmq.device.four_inch?
-      st.top = 320
-    else
-      st.top = 310
-    end
+    st.top = rmq.device.four_inch? ? 320 : 283
     st.left = 165
     st.width = 110
     st.height = 146
@@ -185,16 +169,13 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def action_text(st)
-    if rmq.device.four_inch?
-      st.top = 470
-    else
-      st.top = 450
-    end
+    st.top = rmq.device.four_inch? ? 470 : 55
     st.width = 300
     st.height = 30
     st.left = 10
-    st.color = color.from_hex("0565b0")
-    st.font = rmq.font.small
+    st.color = rmq.device.four_inch? ? color.from_hex("0565b0") : color.from_hex("ffffff")
+    st.font = rmq.device.four_inch? ? rmq.font.small : rmq.font.tiny
+
     st.text_alignment = :center
   end
 
@@ -226,7 +207,7 @@ class GameStylesheet < ApplicationStylesheet
   def win_text(st)
     st.font = rmq.font.super
     st.text_alignment = :center
-    st.top = 30
+    st.top = rmq.device.four_inch? ? 30 : 20
     st.left = 10
     st.width = 300
     st.height = 100
@@ -236,7 +217,7 @@ class GameStylesheet < ApplicationStylesheet
   def win_total(st)
     st.font = rmq.font.large
     st.text_alignment = :center
-    st.top = 110
+    st.top = rmq.device.four_inch? ? 110 : 100
     st.left = 10
     st.width = 300
     st.height = 35
@@ -246,7 +227,7 @@ class GameStylesheet < ApplicationStylesheet
   def win_type(st)
     st.font = rmq.font.small
     st.text_alignment = :center
-    st.top = 145
+    st.top = rmq.device.four_inch? ? 145 : 135
     st.left = 10
     st.width = 300
     st.height = 25
@@ -275,6 +256,7 @@ class GameStylesheet < ApplicationStylesheet
 
   def win_button(st)
     play st
+    st.height = 50
   end
 
   def high_score(st)
@@ -292,7 +274,7 @@ class GameStylesheet < ApplicationStylesheet
   def share_button(st)
     st.width = 150
     st.height = 50
-    st.top = 340
+    st.top = rmq.device.four_inch? ? 340 : 300
     st.left = 85
     st.font = rmq.font.medium
     st.background_color = color.from_rgba(125,125,125,0.75)
@@ -303,7 +285,7 @@ class GameStylesheet < ApplicationStylesheet
   def rate_button(st)
     st.width = 150
     st.height = 50
-    st.top = 400
+    st.top = rmq.device.four_inch? ? 400 : 360
     st.left = 85
     st.font = rmq.font.medium
     st.background_color = color.from_rgba(125,125,125,0.75)
