@@ -169,7 +169,7 @@ class GameStylesheet < ApplicationStylesheet
   end
 
   def action_text(st)
-    st.top = rmq.device.four_inch? ? 470 : 55
+    st.top = rmq.device.four_inch? ? 475 : 55
     st.width = 300
     st.height = 30
     st.left = 10
