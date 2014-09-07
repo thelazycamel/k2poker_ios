@@ -18,5 +18,5 @@ nbproject
 .dat*.*
 *.swp
 *.orig
-vendor/leadbolt/build-iPhoneOS/*.*
-vendor/leadbolt/build-iPhoneSimulator/*.*
+vendor/leadbolt/build-iPhoneOS/
+vendor/leadbolt/build-iPhoneSimulator/
