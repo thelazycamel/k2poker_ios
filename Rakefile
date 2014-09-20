@@ -19,8 +19,8 @@ Motion::Project::App.setup do |app|
     app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/8573a701-8ec9-4151-accf-628ba8457b1e.mobileprovision"
   end
 
-  app.sdk_version = '7.1'
-  app.deployment_target = '7.0'
+  app.sdk_version = '8.0'
+  app.deployment_target = '8.0'
   # Or for iOS 6
   #app.sdk_version = '6.1'
   #app.deployment_target = '6.0'
