@@ -6,6 +6,7 @@ class GameController < UIViewController
   include SocialHelper
   include EventListeners
   include GamePlay
+  include StylesheetSwitcher
 
   attr_accessor :game, :quick_fire
 
@@ -23,7 +24,7 @@ class GameController < UIViewController
   def viewDidLoad
     super
 
-    rmq.stylesheet = GameStylesheet
+    rmq.stylesheet = stylesheet_for("Game")
     rmq(self.view).apply_style :root_view
 
     set_up_views

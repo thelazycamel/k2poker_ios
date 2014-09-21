@@ -1,11 +1,12 @@
-#class SettingsController < UIViewController
 class SettingsController < Formotion::FormController
+
+  include StylesheetSwitcher
 
   def viewDidLoad
     super
 
     self.title = "Settings"
-    rmq.stylesheet = SettingsStylesheet
+    rmq.stylesheet = stylesheet_for("Settings")
     rmq(self.view).apply_style :root_view
   end
 

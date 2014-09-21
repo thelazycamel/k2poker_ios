@@ -1,8 +1,10 @@
 class InfoTwoController < UIViewController
 
+  include StylesheetSwitcher
+
   def viewDidLoad
     super
-    rmq.stylesheet = InfoStylesheet
+    rmq.stylesheet = stylesheet_for("Info")
     rmq(self.view).apply_style :root_view
     show_views
   end
@@ -21,16 +23,16 @@ class InfoTwoController < UIViewController
   end
 
   def show_views
-    rmq.append(UILabel, :royal_flush)
-    rmq.append(UILabel, :straight_flush)
-    rmq.append(UILabel, :four_of_a_kind)
-    rmq.append(UILabel, :full_house)
-    rmq.append(UILabel, :flush)
-    rmq.append(UILabel, :straight)
-    rmq.append(UILabel, :three_of_a_kind)
-    rmq.append(UILabel, :two_pair)
-    rmq.append(UILabel, :pair)
-    rmq.append(UILabel, :high_card)
+    rmq.append(UIImageView, :royal_flush)
+    rmq.append(UIImageView, :straight_flush)
+    rmq.append(UIImageView, :four_of_a_kind)
+    rmq.append(UIImageView, :full_house)
+    rmq.append(UIImageView, :flush)
+    rmq.append(UIImageView, :straight)
+    rmq.append(UIImageView, :three_of_a_kind)
+    rmq.append(UIImageView, :two_pair)
+    rmq.append(UIImageView, :pair)
+    rmq.append(UIImageView, :high_card)
     rmq.append(UILabel, :royal_flush_text)
     rmq.append(UILabel, :straight_flush_text)
     rmq.append(UILabel, :four_of_a_kind_text)

@@ -2,10 +2,11 @@ class InfoOneController < UIViewController
 
   include GameHelper
   include NumberHelper
+  include StylesheetSwitcher
 
   def viewDidLoad
     super
-    rmq.stylesheet = InfoStylesheet
+    rmq.stylesheet = stylesheet_for("Info")
     rmq(self.view).apply_style :root_view
     @game = Game.load
     show_scores

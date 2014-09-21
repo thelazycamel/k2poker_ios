@@ -1,9 +1,11 @@
 class InfoThreeController < UIViewController
 
+  include StylesheetSwitcher
+
   def viewDidLoad
     super
     self.title = "Rules"
-    rmq.stylesheet = InfoStylesheet
+    rmq.stylesheet = stylesheet_for("Info")
     rmq(self.view).apply_style :root_view
     show_rules
   end
