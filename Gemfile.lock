@@ -1,10 +1,4 @@
 GIT
-  remote: git@github.com:infinitered/rmq.git
-  revision: a1e362deb075324583e3055d570a9aa305ce50cb
-  specs:
-    ruby_motion_query (0.7.1)
-
-GIT
   remote: https://github.com/thelazycamel/ruby-poker.git
   revision: 3dcf09785b395a4f910aee8376fb57628ccd0b72
   branch: rubymotion
@@ -31,6 +25,7 @@ GEM
     motion-require (0.2.0)
     motion-social (0.3)
     rake (10.3.2)
+    ruby_motion_query (0.6.1)
     thor (0.19.1)
 
 PLATFORMS
@@ -44,4 +39,4 @@ DEPENDENCIES
   poker_motion!
   rake
   ruby-poker!
-  ruby_motion_query!
+  ruby_motion_query (~> 0.6.1)
