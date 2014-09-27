@@ -1,5 +1,5 @@
 module Six
-  class InfoStylesheet < Base::InfoStylesheet
+  class InfoStylesheet < Five::InfoStylesheet
 
   end
 end

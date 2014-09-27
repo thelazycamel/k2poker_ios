@@ -1,5 +1,5 @@
 module Six
-  class GameStylesheet < Base::GameStylesheet
+  class GameStylesheet < Five::GameStylesheet
 
   end
 end

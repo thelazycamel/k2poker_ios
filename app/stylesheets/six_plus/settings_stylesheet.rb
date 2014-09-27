@@ -1,5 +1,5 @@
 module SixPlus
-  class SettingsStylesheet < Base::SettingsStylesheet
+  class SettingsStylesheet < Five::SettingsStylesheet
 
   end
 end
