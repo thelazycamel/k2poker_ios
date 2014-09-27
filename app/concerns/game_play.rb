@@ -87,7 +87,7 @@ module GamePlay
   def start_new_game
     @quick_fire = PokerMotion::QuickFire.new
     rmq(:play).style {|st| st.text = "Play" }
-    @game.score = 512 
+    @game.score = 1
     @game.rebuys = []
     @game.rebuy_obtained = false
     @game.million_rebuy = false

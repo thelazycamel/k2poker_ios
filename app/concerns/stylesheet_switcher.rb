@@ -6,7 +6,7 @@ module StylesheetSwitcher
     return stylesheet_constant("SixPlus", controller) if is_six_plus?
     return stylesheet_constant("Six", controller) if is_six?
     return stylesheet_constant("Five", controller) if is_iphone_five?
-    return stylesheet_constant("Base", controller) #base is 4s
+    return stylesheet_constant("Base", controller)
   end
 
   def stylesheet_constant(device, controller)
@@ -22,15 +22,15 @@ module StylesheetSwitcher
   end
 
   def is_six_plus?
-    #rmq.device.five_point_five_inch?
+    rmq.device.five_point_five_inch?
   end
 
   def is_six?
-    #rmq.device.four_point_seven_inch?
+    rmq.device.four_point_seven_inch?
   end
 
   def is_iphone_five?
-    rmq.device.iphone? && rmq.device.four_inch?
+    rmq.device.four_inch?
   end
 
 end
