@@ -20,8 +20,8 @@ class OverlayController
   OPTIONAL_VIEWS = {
     share_button: UIButton,
     rate_button: UIButton,
-    rebuy_awarded: UILabel,
-    rebuy_used: UILabel,
+    rebuy_awarded: UIImageView,
+    rebuy_used: UIImageView,
     high_score: UILabel
    }
 
@@ -63,7 +63,7 @@ class OverlayController
 
   def show_win_detail
     win_sound
-    rmq(rmq.app.window).append(UILabel, :rebuy_awarded).animations.fade_in(duration: 1) if @rebuy_added
+    rmq(rmq.app.window).append(UIImageView, :rebuy_awarded).animations.fade_in(duration: 1) if @rebuy_added
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "WIN"}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = formatted_score(@game.score)  }
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @quick_fire.to_hash[:winner][:rank] }
@@ -81,7 +81,7 @@ class OverlayController
   def show_lose_detail
     lose_sound
     score = @rebuy_used ? formatted_score(@previous_score) : formatted_score(@game.score)
-    rmq(rmq.app.window).append(UILabel, :rebuy_used).animations.fade_in(duration: 1) if @rebuy_used
+    rmq(rmq.app.window).append(UIImageView, :rebuy_used).animations.fade_in(duration: 1) if @rebuy_used
     rmq(rmq.app.window).find(:win_text).style {|st| st.text = "LOSE"; st.color = rmq.color.from_hex("fd1b14")}
     rmq(rmq.app.window).find(:win_total).style {|st| st.text = score; st.color = rmq.color.from_hex("fd1b14") }
     rmq(rmq.app.window).find(:win_type).style {|st| st.text = @game.score == @game.high_score ? "New High Score" : "Beaten By" }
