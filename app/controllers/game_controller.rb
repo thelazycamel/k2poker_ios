@@ -97,14 +97,28 @@ class GameController < UIViewController
     rmq(:rebuys).style {|st| st.text = "Rebuys #{@game.rebuys.size}" }
     rmq(:action_text).style { |st| st.view.text = rank_text }
     if @quick_fire.game_status == :finished
-      rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_1}_small") }
+      rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_1}_small")}
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("#{@quick_fire.player(2).card_2}_small") }
       reveal_cards(:comp_card_1, :comp_card_2)
+      highlight_cards
     else
       rmq(:comp_card_1).style {|st| st.background_image = rmq.image.resource("card_back") }
       rmq(:comp_card_2).style {|st| st.background_image = rmq.image.resource("card_back") }
     end
     save_game
+  end
+
+  def highlight_cards
+    highlights = @quick_fire.to_hash[:winner][:draw] ? @quick_fire.to_hash[:winner][:cards] : @quick_fire.to_hash[:winner][:hand]
+    rmq(:comp_card_1).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.player(2).card_1
+    rmq(:comp_card_2).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.player(2).card_2
+    rmq(:table_card_1).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.table_cards[0]
+    rmq(:table_card_2).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.table_cards[1]
+    rmq(:table_card_3).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.table_cards[2]
+    rmq(:table_card_4).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.table_cards[3]
+    rmq(:table_card_5).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.table_cards[4]
+    rmq(:card_1).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.player(1).card_1
+    rmq(:card_2).style {|st| st.opacity = 0.2} unless highlights.include? @quick_fire.player(1).card_2
   end
 
   def set_up_cards

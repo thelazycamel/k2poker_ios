@@ -124,12 +124,12 @@ class OverlayController
       @game_controller.redraw_scene
     end
 
-
     rmq(rmq.app.window).find(:overlay_close).on(:touch) do |sender|
       remove
     end
 
     rmq(rmq.app.window).find(:share_button).on(:touch) do |sender|
+      remove
       @game_controller.display_share_dialog
     end
 
