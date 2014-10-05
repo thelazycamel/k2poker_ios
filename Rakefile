@@ -13,7 +13,7 @@ Motion::Project::App.setup do |app|
 
   app.name = 'K2 Poker'
   app.identifier = 'com.k2app.net.k2poker'
-  app.short_version = '1.2'
+  app.short_version = '1.3'
   app.version = app.short_version
   app.release do
     app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/8573a701-8ec9-4151-accf-628ba8457b1e.mobileprovision"
