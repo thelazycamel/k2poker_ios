@@ -5,7 +5,7 @@ module Base
     @top = 40
 
     def root_view(st)
-      st.background_image = rmq.image.resource("info_background")
+      st.background_image = rmq.image.resource("info1")
     end
 
     def high_score(st)

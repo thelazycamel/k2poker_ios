@@ -2,16 +2,15 @@ module Base
   module OverlayStylesheet
 
     def overlay(st)
-      st.top = 30
-      st.left = 10
+      st.top = 0
+      st.left = 0
       if rmq.device.four_inch?
-        st.height = 487
+        st.height = 518
       else
-        st.height = 447
+        st.height = 430
       end
-      st.width = 300
+      st.width = 320
       st.background_color = color.from_rgba(0,53,81,0.75)
-      st.layer.cornerRadius = 10
     end
 
     def overlay_close(st)
@@ -27,19 +26,19 @@ module Base
     end
 
     def win_text(st)
-      st.font = rmq.font.super
+      st.font = rmq.font.large
       st.text_alignment = :center
-      st.top = rmq.device.four_inch? ? 30 : 20
+      st.top = 19
       st.left = 10
       st.width = 300
-      st.height = 100
+      st.height = 70
       st.color = color.white
     end
 
     def win_total(st)
       st.font = rmq.font.large
       st.text_alignment = :center
-      st.top = rmq.device.four_inch? ? 110 : 100
+      st.frame = { below_prev: 7 }
       st.left = 10
       st.width = 300
       st.height = 35
@@ -49,7 +48,7 @@ module Base
     def win_type(st)
       st.font = rmq.font.small
       st.text_alignment = :center
-      st.top = rmq.device.four_inch? ? 145 : 135
+      st.frame = { below_prev: 7}
       st.left = 10
       st.width = 300
       st.height = 25
