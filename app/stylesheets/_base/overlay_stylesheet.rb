@@ -10,7 +10,7 @@ module Base
         st.height = 430
       end
       st.width = 320
-      st.background_color = color.from_rgba(0,53,81,0.75)
+      st.background_color = color.from_rgba(0,53,81,0.90)
     end
 
     def overlay_close(st)
