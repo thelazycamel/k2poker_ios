@@ -22,11 +22,7 @@ module Base
     def win_text(st)
       st.font = rmq.font.large
       st.text_alignment = :center
-      if rmq.device.four_inch?
-        st.frame = {t: 30, l:10, h:50, w:300}
-      else
-        st.frame = {t: 0, l:10, h: 50, w:320}
-      end
+      st.frame = {t: 30, l:10, h:50, w:300}
       st.color = color.white
     end
 
