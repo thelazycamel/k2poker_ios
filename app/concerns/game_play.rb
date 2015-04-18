@@ -94,6 +94,7 @@ module GamePlay
     rmq(:play).style {|st| st.text = "Play" }
     @game.score = 1
     @game.rebuys = []
+    @game.easy_rebuy = false
     @game.rebuy_obtained = false
     @game.million_rebuy = false
     @game.open = true
