@@ -46,6 +46,12 @@ class SettingsController < Formotion::FormController
       section.select_one = true
       section.build_row do |row|
         row.title = "Easy"
+        row.key = 0
+        row.value = true if opts[:difficulty] == 0
+        row.type = :check
+      end
+      section.build_row do |row|
+        row.title = "Normal"
         row.key = 1
         row.value = true if opts[:difficulty] == 1
         row.type = :check

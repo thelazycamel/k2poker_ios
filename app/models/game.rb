@@ -1,7 +1,7 @@
 class Game
 
   PROPERTIES = [ :sounds, :difficulty, :walkthrough,
-                 :score, :open, :rebuys, :rebuy_obtained, :million_rebuy,
+                 :score, :open, :rebuys, :easy_rebuy, :rebuy_obtained, :million_rebuy,
                  :high_score, :table_cards, :deck, :game_status,
                  :player_1_status, :player_1_card_1, :player_1_card_2, :player_2_status, :player_2_card_1, :player_2_card_2
   ]

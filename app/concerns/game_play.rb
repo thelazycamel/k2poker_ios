@@ -44,6 +44,11 @@ module GamePlay
         rebuy_added = true
         add_rebuy(@game.score)
       end
+      if @game.score == 64 && !@game.easy_rebuy && @game.difficulty == 0
+        add_rebuy(64)
+        rebuy_added = true
+        @game.easy_rebuy = true
+      end
       if @game.score == 1024 && !@game.rebuy_obtained
         add_rebuy(1024)
         rebuy_added = true
