@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-#gem 'ruby_motion_query', '~> 0.6.1'
-gem 'ruby_motion_query', :git => 'git@github.com:infinitered/rmq.git'
+gem 'ruby_motion_query', '~> 1.2.0'
 gem 'formotion'
 gem 'motion-bundler'
 gem 'bubble-wrap'

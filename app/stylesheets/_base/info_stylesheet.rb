@@ -9,20 +9,14 @@ module Base
     end
 
     def high_score(st)
-      st.top = 400
-      st.left = 10
-      st.width = 300
-      st.height = 25
+      st.frame = {t: 400, l: 10, w: 300, h: 25}
       st.text_alignment = :center
       st.font = rmq.font.with_name("Helvetica Neue", 20)
       st.color = color.from_hex("f8fd2d")
     end
 
     def score_0(st)
-      st.top = 70
-      st.left = 10
-      st.width = 300
-      st.height = 30
+      st.frame = { t: 70, l: 10, w: 300, h: 30}
       st.color = color.from_hex("53b2fc")
       st.text_alignment = :center
       st.font = rmq.font.with_name("Helvetica Neue", 30)
@@ -30,130 +24,126 @@ module Base
 
     def score_1(st)
       score_0(st)
-      st.frame = { below_prev: 0.1 }
-      st.height = 28.5
+      st.frame = { below_prev: 0.1, h: 28.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 28.5)
     end
 
     def score_2(st)
       score_1(st)
-      st.height = 27
+      st.frame = { h: 27 }
       st.font = rmq.font.with_name("Helvetica Neue", 27)
     end
 
     def score_3(st)
       score_1(st)
-      st.height = 25.5
+      st.frame = { h: 25.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 25.5)
     end
 
     def score_4(st)
       score_1(st)
-      st.height = 24
+      st.frame = { h: 24 }
       st.font = rmq.font.with_name("Helvetica Neue", 24)
     end
 
     def score_5(st)
       score_1(st)
-      st.height = 22.5
+      st.frame = { h: 22.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 22.5)
     end
 
     def score_6(st)
       score_1(st)
-      st.height = 21
+      st.frame = { h: 21 }
       st.font = rmq.font.with_name("Helvetica Neue", 21)
     end
 
     def score_7(st)
       score_1(st)
-      st.height = 19.5
+      st.frame = { h: 19.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 19.5)
     end
 
     def score_8(st)
       score_1(st)
-      st.height = 18
+      st.frame = { h: 18 }
       st.font = rmq.font.with_name("Helvetica Neue", 18)
     end
 
     def score_9(st)
       score_1(st)
-      st.height = 16.5
+      st.frame = { h: 16.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 16.5)
     end
 
     def score_10(st)
       score_1(st)
-      st.height = 15
+      st.frame = { h: 15 }
       st.font = rmq.font.with_name("Helvetica Neue", 15)
     end
 
     def score_11(st)
       score_1(st)
-      st.height = 13.5
+      st.frame = { h: 13.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 13.5)
     end
 
     def score_12(st)
       score_1(st)
-      st.height = 12
+      st.frame = { h: 12 }
       st.font = rmq.font.with_name("Helvetica Neue", 12)
     end
 
     def score_13(st)
       score_1(st)
-      st.height = 10.5
+      st.frame = { h: 10.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 10.5)
     end
 
     def score_14(st)
       score_1(st)
-      st.height = 9
+      st.frame = { h: 9 }
       st.font = rmq.font.with_name("Helvetica Neue", 9)
     end
 
     def score_15(st)
       score_1(st)
-      st.height = 7.5
+      st.frame = { h: 7.5 }
       st.font = rmq.font.with_name("Helvetica Neue", 7.5)
     end
 
     def score_16(st)
       score_1(st)
-      st.height = 6
+      st.frame = { h: 6 }
       st.font = rmq.font.with_name("Helvetica Neue", 6)
     end
 
     def score_17(st)
       score_1(st)
-      st.height = 6
+      st.frame = { h: 6 }
       st.font = rmq.font.with_name("Helvetica Neue", 6)
     end
 
     def score_18(st)
       score_1(st)
-      st.height = 5
+      st.frame = { h: 5 }
       st.font = rmq.font.with_name("Helvetica Neue", 5)
     end
 
     def score_19(st)
       score_1(st)
-      st.height = 4
+      st.frame = { h: 4 }
       st.font = rmq.font.with_name("Helvetica Neue", 4)
     end
 
     def score_20(st)
       score_1(st)
-      st.height = 3
+      st.frame = { h: 3 }
       st.font = rmq.font.with_name("Helvetica Neue", 3)
     end
 
     def royal_flush(st)
-      st.width = 141
-      st.height = 35
-      st.top = 70
-      st.left = 150
+      st.frame = {w: 141, h: 35, t: 70, l: 150}
       st.background_image = rmq.image.resource("royal_flush")
     end
 
@@ -204,10 +194,7 @@ module Base
     end
 
     def royal_flush_text(st)
-      st.top = 75
-      st.left = 20
-      st.width = 130
-      st.height = 25
+      st.frame = {t: 75, l:20, w:130, h: 25}
       st.font = rmq.font.small
       st.color = color.white
       st.text = "Royal Flush"
@@ -367,6 +354,11 @@ module Base
       rules(st)
       st.frame = { below_prev: 5, h: 147 }
       st.text = "A Rebuy will be awarded at $1,024, if you lose from this point on, you will automatically rebuy back in at that value. You will also be awarded a rebuy for a Straight Flush and Royal Flush for the cash value you have at the time of getting the hand."
+    end
+
+    def walkthrough(st)
+      st.frame = {l: 0, t: 37, w: 320, h: 568}
+      st.background_image = rmq.image.resource("walkthrough_2")
     end
 
   end

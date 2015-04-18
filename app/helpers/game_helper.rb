@@ -16,7 +16,7 @@ module GameHelper
         duration: 0.2,
         animations: ->(c) {
           c.style do |st|
-            st.top = start_pos - start_height
+            st.frame = {t: start_pos - start_height}
             st.rotation = 175 if card == :card_1
             st.rotation = 185 if card == :card_2
             st.opacity = 0.5
@@ -32,7 +32,7 @@ module GameHelper
                 c.style do |st|
                   st.opacity = 1.0
                   st.rotation = 0
-                  st.top = start_pos
+                  st.frame = {t: start_pos}
                 end
               },
               completion: ->(finished, x) {
@@ -67,7 +67,7 @@ module GameHelper
         animations: ->(c) {
           c.style do |st|
             st.rotation = 0
-            st.top = -100
+            st.frame = {t: 100}
           end
         },  completion: ->(did_finish, q){
           if did_finish
@@ -88,7 +88,7 @@ module GameHelper
       animations: ->(c) {
         c.style do |st|
           st.rotation = 0
-          st.top = final_pos
+          st.frame = {t: final_pos}
         end
       }
     })
@@ -99,14 +99,14 @@ module GameHelper
     hide_card(card)
     card_deal_sound
     final_pos = rmq(card).get.frame.origin.y
-    rmq(card).style {|st| st.top = -100; st.rotation = 0 }
+    rmq(card).style {|st| st.frame = {t: -100}; st.rotation = 0 }
     rmq(card).animate({
       duration: 0.25,
       animations: ->(c) {
         c.style do |st|
           st.opacity = 1.0
           st.rotation = 45
-          st.top = final_pos
+          st.frame = {t: final_pos}
         end
       }
     })
@@ -122,14 +122,14 @@ module GameHelper
     end
     card_deal_sound
     final_pos = rmq(card).get.frame.origin.y
-    rmq(card).style {|st| st.top = -100; st.rotation = 45 }
+    rmq(card).style {|st| st.frame = {t: -100}; st.rotation = 45 }
     rmq(card).animate({
       duration: 0.25,
       animations: ->(c) {
         c.style do |st|
           st.opacity = 1.0
           st.rotation = 0
-          st.top = final_pos
+          st.frame = {t: final_pos}
         end
       },
       completion: ->(did_finish, q){

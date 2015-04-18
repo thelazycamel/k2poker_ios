@@ -8,73 +8,72 @@ module Five
 
     def score(st)
       super
-      st.top = 30
+      st.frame = {t: 30}
     end
 
     def rebuys(st)
       super
-      st.top = 90
+      st.frame = {t: 90}
     end
 
     def comp_card_1(st)
       super
-      st.top = 90
+      st.frame = {t: 90}
     end
 
     def comp_card_2(st)
       super
-      st.top = 90
+      st.frame = {t: 90}
     end
 
     def table_card_1(st)
       super
-      st.top = 175
+      st.frame = {t: 175}
     end
 
     def table_card_2(st)
       super
-      st.top = 175
+      st.frame = {t: 175}
     end
 
     def table_card_3(st)
       super
-      st.top = 175
+      st.frame = {t: 175}
     end
 
     def table_card_4(st)
       super
-      st.top = 175
+      st.frame = {t: 175}
     end
 
     def table_card_5(st)
       super
-      st.top = 175
+      st.frame = {t: 175}
     end
 
     def fold(st)
       super
-      st.top = 90
+      st.frame = {t: 90}
     end
 
     def play(st)
       super
-      st.top = 260
-      st.height = 50
+      st.frame = {t: 260, h: 50}
     end
 
     def card_1(st)
       super
-      st.top = 320
+      st.frame = {t: 320}
     end
 
     def card_2(st)
       super
-      st.top = 320
+      st.frame = {t: 320}
     end
 
     def action_text(st)
       super
-      st.top = 475
+      st.frame = {t: 475}
       st.color = color.from_hex("0565b0")
       st.font = rmq.font.small
     end

@@ -22,14 +22,15 @@ module EventListeners
   end
 
   #TODO move this method elsewhere
-  def load_info_navigation
+  def load_info_navigation(tab=0)
       tabbar = UITabBarController.alloc.init
       tabbar.viewControllers = [
         InfoOneController.alloc.initWithNibName(nil, bundle:nil),
         InfoTwoController.alloc.initWithNibName(nil, bundle:nil),
-        InfoThreeController.alloc.initWithNibName(nil, bundle:nil)
+        InfoThreeController.alloc.initWithNibName(nil, bundle:nil),
+        InfoFourController.alloc.initWithNibName(nil, bundle:nil)
       ]
-      tabbar.selectedIndex = 0
+      tabbar.selectedIndex = tab
       self.navigationController.pushViewController(tabbar, animated: true)
   end
 

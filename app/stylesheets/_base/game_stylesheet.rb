@@ -8,36 +8,24 @@ module Base
     end
 
     def score(st)
-      st.width = 300
-      st.height = 50
-      st.top = 26
-      st.left = 10
+      st.frame = {w: 300, h: 50, t: 26, l: 10}
       st.color = color.from_hex("f8fd2d")
       st.font = rmq.font.medium
       st.text_alignment = :center
     end
 
     def info(st)
-      st.width = 25
-      st.height = 25
-      st.top = 42
-      st.left = 20
+      st.frame = {w: 25, h: 25, t: 42, l: 20}
       st.background_image = rmq.image.resource("info")
     end
 
     def settings(st)
-      st.width = 25
-      st.height = 25
-      st.top = 42
-      st.left = 275
+      st.frame = {w: 25, h: 25, t: 42, l: 275}
       st.background_image = rmq.image.resource("settings")
     end
 
     def rebuys(st)
-      st.width = 75
-      st.height = 75
-      st.top = 83
-      st.left = 10
+      st.frame = {w: 75, h: 75, t: 83, l: 10}
       st.view.clipsToBounds = "YES"
       st.layer.cornerRadius = 10
       st.background_color = color.from_hex("45b209")
@@ -50,61 +38,37 @@ module Base
     end
 
     def comp_card_1(st)
-      st.width = 57
-      st.height = 75
-      st.top = 83
-      st.left = 100
+      st.frame = {w: 57, h: 75, t: 83, l: 100}
       st.background_image = rmq.image.resource("card_back")
     end
 
     def comp_card_2(st)
-      st.width = 57
-      st.top = 83
-      st.height = 75
-      st.left = 163
+      st.frame = {w: 57, h: 75, t: 83, l: 163}
       st.background_image = rmq.image.resource("card_back")
     end
 
     def table_card_1(st)
-      st.width = 57
-      st.height = 75
-      st.top = 163
-      st.left = 13
+      st.frame = {w: 57, h: 75, t: 163, l: 13}
     end
 
     def table_card_2(st)
-      st.width = 57
-      st.height = 75
-      st.top = 163
-      st.left = 72
+      st.frame = {w: 57, h: 75, t: 163, l: 72}
     end
 
     def table_card_3(st)
-      st.width = 57
-      st.height = 75
-      st.top = 163
-      st.left = 131
+      st.frame = {w: 57, h: 75, t: 163, l: 131}
     end
 
     def table_card_4(st)
-      st.width = 57
-      st.height = 75
-      st.top = 163
-      st.left = 190
+      st.frame = {w: 57, h: 75, t: 163, l: 190}
     end
 
     def table_card_5(st)
-      st.width = 57
-      st.height = 75
-      st.top = 163
-      st.left = 249
+      st.frame = {w: 57, h: 75, t: 163, l: 249}
     end
 
     def fold(st)
-      st.width = 75
-      st.height = 75
-      st.top = 83
-      st.left = 235
+      st.frame = {w: 75, h: 75, t: 83, l: 235}
       st.layer.cornerRadius = 10
       st.background_color = color.from_hex("fd1b14")
       st.color = color.white
@@ -113,10 +77,7 @@ module Base
     end
 
     def play(st)
-      st.top = 240
-      st.width = 150
-      st.height = 40
-      st.left = 85
+      st.frame = {w: 150, h: 40, t: 240, l: 85}
       st.font = rmq.font.medium
       st.background_color = color.from_hex("45b209")
       st.layer.cornerRadius = 10
@@ -124,38 +85,24 @@ module Base
     end
 
     def card_1(st)
-      st.top = 283
-      st.left = 45
-      st.height = 146
-      st.width = 110
+      st.frame = {w: 110, h: 146, t: 283, l: 45}
+      st.font = rmq.font.medium
     end
 
     def card_2(st)
-      st.top = 283
-      st.left = 165
-      st.width = 110
-      st.height = 146
+      st.frame = {w: 110, h: 146, t: 283, l: 165}
     end
 
     def burn_icon_1(st)
-      st.width = 12
-      st.height = 12
-      st.top = 324
-      st.left = 138
+      st.frame = {w: 12, h: 12, t: 324, l: 138}
     end
 
     def burn_icon_2(st)
-      st.width = 12
-      st.height = 12
-      st.top = 324
-      st.left = 258
+      st.frame = {w: 12, h: 12, t: 324, l: 258}
     end
 
     def action_text(st)
-      st.top = 55
-      st.width = 300
-      st.height = 30
-      st.left = 10
+      st.frame = {w: 300, h: 30, t: 55, l: 10}
       st.color = color.from_hex("ffffff")
       st.font = rmq.font.tiny
       st.text_alignment = :center
@@ -164,10 +111,7 @@ module Base
     def folding(st)
       st.font = rmq.font.small
       st.text_alignment = :center
-      st.top = 110
-      st.left = 0
-      st.width = 320
-      st.height = 200
+      st.frame = {w: 320, h: 200, t: 110, l: 0}
       st.color = color.from_hex("fd1b14")
       st.text = "FOLD"
     end

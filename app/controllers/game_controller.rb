@@ -27,6 +27,7 @@ class GameController < UIViewController
     rmq.stylesheet = stylesheet_for("Game")
     rmq(self.view).apply_style :root_view
 
+
     set_up_views
     redraw_scene
     set_up_events
@@ -53,6 +54,7 @@ class GameController < UIViewController
     super
     @game ||= Game.load
     load_game(@game)
+    redirect_to_walkthough
     self.navigationController.setNavigationBarHidden(true)
     animated
   end
@@ -61,6 +63,14 @@ class GameController < UIViewController
     super
     save_game
     animated
+  end
+
+  def redirect_to_walkthough
+    unless @game.walkthrough
+      @game.walkthrough = true
+      save_game
+      load_info_navigation(3)
+    end
   end
 
   def set_up_views
