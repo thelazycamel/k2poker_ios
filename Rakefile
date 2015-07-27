@@ -13,17 +13,14 @@ Motion::Project::App.setup do |app|
 
   app.name = 'K2 Poker'
   app.identifier = 'com.k2app.net.k2poker'
-  app.short_version = '1.3'
+  app.short_version = '1.4'
   app.version = app.short_version
   app.release do
-    app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/8573a701-8ec9-4151-accf-628ba8457b1e.mobileprovision"
+    app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/b3ecd194-8499-4b2d-89f8-59214710780a.mobileprovision"
   end
 
-  app.sdk_version = '8.3'
-  app.deployment_target = '8.3'
-  # Or for iOS 6
-  #app.sdk_version = '6.1'
-  #app.deployment_target = '6.0'
+  app.sdk_version = '8.4'
+  app.deployment_target = '8.4'
 
   app.icons = ["icon@2x.png", "icon-29@2x.png", "icon-40@2x.png", "icon-60@2x.png", "icon-76@2x.png", "icon-512@2x.png"]
 
