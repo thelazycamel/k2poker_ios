@@ -19,8 +19,8 @@ Motion::Project::App.setup do |app|
     app.provisioning_profile = "/Users/stuart/Library/MobileDevice/Provisioning\ Profiles/b4f4baad-bf3a-45f3-a815-d38a31005b48.mobileprovision"
   end
 
-  app.sdk_version = '8.4'
-  app.deployment_target = '8.4'
+  app.sdk_version = '9.3'
+  app.deployment_target = '9.3'
 
   app.icons = ["icon@2x.png", "icon-29@2x.png", "icon-40@2x.png", "icon-60@2x.png", "icon-76@2x.png", "icon-512@2x.png"]
 

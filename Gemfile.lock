@@ -6,7 +6,7 @@ GIT
     ruby-poker (1.0.1)
 
 PATH
-  remote: ../poker_motion
+  remote: ../k2_poker_gem_ruby_motion
   specs:
     poker_motion (0.0.1)
       ruby-poker (= 1.0.1)
@@ -40,3 +40,6 @@ DEPENDENCIES
   rake
   ruby-poker!
   ruby_motion_query (~> 1.2.0)
+
+BUNDLED WITH
+   1.11.2
